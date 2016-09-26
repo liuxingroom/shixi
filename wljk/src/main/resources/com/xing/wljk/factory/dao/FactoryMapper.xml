@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xing.wljk.factory.dao.FactoryMapper">
+	<resultMap type="com.xing.wljk.factory.entity.Factory" id="factoryResultMap">
+		<id column="t_factory_id_" jdbcType="VARCHAR" property="id"/>
+		<result column="t_factory_name_" jdbcType="VARCHAR"  property="name"/>
+		<result column="t_factory_address_" jdbcType="VARCHAR" property="address"/>
+	</resultMap>
+	
+	<sql id="factorySql">
+		t_factory.id_ t_factory_id_,
+		t_factory.name_ t_factory_name_,
+		t_factory.address_ t_factory_address_,
+	</sql>
+	<select id="findFactory" resultMap="factoryResultMap">
+		select 
+		<trim suffixOverrides=",">
+			<include refid="factorySql"></include>
+		</trim>
+		from FACTORY_ t_factory
+	</select>
+</mapper>
