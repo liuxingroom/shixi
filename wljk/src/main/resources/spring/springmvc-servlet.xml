@@ -17,7 +17,7 @@
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
 	
 	<!-- 扫描controller层的组件（既@Controller注解） -->
-	<context:component-scan base-package="com.xing.wljk.*.controller"></context:component-scan>
+	<context:component-scan base-package="com.xing.wlxt.*.controller"></context:component-scan>
 	<!-- 代替了处理器映射器，和处理器适配器 -->
 	<mvc:annotation-driven/>
 	
