@@ -3,21 +3,89 @@
 
 <mapper namespace="com.xing.wlxt.factory.dao.FactoryMapper">
 	<resultMap type="com.xing.wlxt.factory.entity.Factory" id="factoryResultMap">
-		<id column="t_factory_id_" jdbcType="VARCHAR" property="id"/>
-		<result column="t_factory_name_" jdbcType="VARCHAR"  property="name"/>
-		<result column="t_factory_address_" jdbcType="VARCHAR" property="address"/>
+		<id column="t_factory_id_" jdbcType="VARCHAR" property="factoryId"/>
+		<result column="t_factory_name_" jdbcType="VARCHAR"  property="fullName"/>
+		<result column="t_factory_na_" jdbcType="VARCHAR" property="factoryNA"/>
+		<result column="t_factory_contacts_" jdbcType="VARCHAR"  property="contacts"/>
+		<result column="t_factory_phone_" jdbcType="VARCHAR" property="phone"/>
+		<result column="t_factory_mobile_" jdbcType="VARCHAR"  property="mobile"/>
+		<result column="t_factory_fax_" jdbcType="VARCHAR" property="fax"/>
+		<result column="t_factory_note_" jdbcType="VARCHAR"  property="note"/>
+		<result column="t_factory_inspector_" jdbcType="VARCHAR" property="inspector"/>
+		<result column="t_factory_state_" jdbcType="CHAR"  property="state"/>
+		<result column="t_factory_order_no_" jdbcType="INTEGER" property="orderNo"/>
+		<result column="t_factory_create_by_" jdbcType="VARCHAR"  property="createBy"/>
+		<result column="t_factory_create_dept_" jdbcType="VARCHAR" property="createDept"/>
+		<result column="t_factory_create_time_" jdbcType="TIMESTAMP"  property="createTime"/>
 	</resultMap>
+
 	
 	<sql id="factorySql">
-		t_factory.id_ t_factory_id_,
-		t_factory.name_ t_factory_name_,
-		t_factory.address_ t_factory_address_,
+		t_factory.FACTORY_ID  t_factory_id_,
+		t_factory.FULL_NAME   t_factory_name_,
+		t_factory.FACTORY_NA  t_factory_na_,
+		t_factory.CONTACTS    t_factory_contacts_,
+		t_factory.PHONE   t_factory_phone_,
+		t_factory.MOBILE  t_factory_mobile_,
+		t_factory.FAX  t_factory_fax_,
+		t_factory.NOTE   t_factory_note_,
+		t_factory.INSPECTOR  t_factory_inspector_,
+		t_factory.STATE   t_factory_state_,
+		t_factory.ORDER_NO  t_factory_order_no_,
+		
+		t_factory.CREATE_BY  t_factory_create_by_,
+		t_factory.CREATE_DEPT   t_factory_create_dept_,
+		t_factory.CREATE_TIME  t_factory_create_time_,
 	</sql>
+	<!-- 获取生产厂家 -->
 	<select id="findFactory" resultMap="factoryResultMap">
 		select 
 		<trim suffixOverrides=",">
 			<include refid="factorySql"></include>
 		</trim>
-		from FACTORY_ t_factory
+		from FACTORY_C t_factory
 	</select>
+	
+	<!-- 根据id来获取生产厂家 -->
+	<select id="findFactoryById" resultMap="factoryResultMap" parameterType="String">
+		select 
+		<trim suffixOverrides=",">
+			<include refid="factorySql"></include>
+		</trim>
+		from FACTORY_C t_factory
+		where t_factory.FACTORY_ID=#{factoryId}
+		
+	</select>
+	
+	<!-- 保存新的生产厂 -->
+	<insert id="saveFactory" parameterType="com.xing.wlxt.factory.entity.Factory">
+		insert into FACTORY_C
+		(FACTORY_ID,FULL_NAME,FACTORY_NA,CONTACTS,PHONE,MOBILE,FAX,NOTE,INSPECTOR,STATE,ORDER_NO,CREATE_BY,CREATE_DEPT,CREATE_TIME)
+		values
+		(
+			#{factoryId,jdbcType=VARCHAR},
+			#{fullName,jdbcType=VARCHAR},
+			#{factoryNA,jdbcType=VARCHAR},
+			#{contacts,jdbcType=VARCHAR},
+			#{phone,jdbcType=VARCHAR},
+			#{mobile,jdbcType=VARCHAR},
+			#{fax,jdbcType=VARCHAR},
+			#{note,jdbcType=VARCHAR},
+			#{inspector,jdbcType=VARCHAR},
+			#{state,jdbcType=CHAR},
+			#{orderNo,jdbcType=INTEGER},
+			#{createBy,jdbcType=VARCHAR},
+			#{createDept,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<!-- 根据id删除用户信息（其实就是修改厂家的状态，即：state值设置为0） -->
+	<update id="deleteFactoryById" parameterType="String">
+		update FACTORY_C
+		<set>
+			STATE='0'
+		</set>
+		where FACTORY_ID=#{factoryId,jdbcType=VARCHAR}
+	</update>
 </mapper>
