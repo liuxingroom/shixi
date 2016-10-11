@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 购销合同
- *
+ *  购销合同
+ *  CONTRACT_C
  */
 public class Contract implements Serializable{
 	/**

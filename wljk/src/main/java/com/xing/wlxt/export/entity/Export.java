@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 出口报运单的相关信息
- *
+ * EXPORT_C
  */
 public class Export implements Serializable{
 

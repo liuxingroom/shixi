@@ -2,6 +2,11 @@ package com.xing.wlxt.contractExtProduct.entity;
 
 import java.io.Serializable;
 
+/**
+ * 购销合同下的附信息
+ * EXT_CPRODUCT_C
+ *
+ */
 public class ContractExtProduct implements Serializable{
 	
 	/**

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 报运下的货物信息
- *
+ * EXPORT_PRODUCT_C
  */
 public class ExportProduct implements Serializable{
 

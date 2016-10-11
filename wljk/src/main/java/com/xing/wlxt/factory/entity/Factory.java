@@ -3,6 +3,11 @@ package com.xing.wlxt.factory.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 生产厂家的信息
+ * FACTORY_C
+ *
+ */
 public class Factory implements Serializable{
 	
 	/**

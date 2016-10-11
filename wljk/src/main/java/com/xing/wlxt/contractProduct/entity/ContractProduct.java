@@ -2,6 +2,10 @@ package com.xing.wlxt.contractProduct.entity;
 
 import java.io.Serializable;
 
+/**
+ * CONTRACT_PRODUCT_C
+ * 购销合同下的货物信息
+ */
 public class ContractProduct implements Serializable{
 	/**
 	 * 
