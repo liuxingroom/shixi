@@ -12,7 +12,7 @@
 <div id="innerMenubar">
     <div id="navMenubar">
 <ul>
-<li id="back"><a href="list.action">返回</a></li>
+<li id="back"><a href="findFactory.action">返回</a></li>
 </ul>
     </div>
 </div>
@@ -35,7 +35,7 @@
 	            <td class="columnTitle">厂家名称：</td>
 	            <td class="tableContent">${obj.fullName}</td>
 	            <td class="columnTitle">简称：</td>
-	            <td class="tableContent">${obj.factoryName}</td>
+	            <td class="tableContent">${obj.factoryNA}</td>
 	        </tr>
 	        <tr>
 	            <td class="columnTitle">联系人：</td>
@@ -57,7 +57,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle">备注：</td>
-	            <td class="tableContent"><pre>${obj.cnote}</pre></td>
+	            <td class="tableContent"><pre>${obj.note}</pre></td>
 	        </tr>
 		</table>
 	</div>

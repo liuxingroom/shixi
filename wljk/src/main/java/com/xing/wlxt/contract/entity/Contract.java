@@ -13,7 +13,7 @@ public class Contract implements Serializable{
 	 */
 	private static final long serialVersionUID = -6712463135085863087L;
 	/**购销合同id*/
-	private String contractID;
+	private String id;
 	/**收购方*/
 	private String offer;
 	/**
@@ -74,11 +74,11 @@ public class Contract implements Serializable{
 	private String createDept;
 	/**创建日期*/
 	private String createTime;
-	public String getContractID() {
-		return contractID;
+	public String getId() {
+		return id;
 	}
-	public void setContractID(String contractID) {
-		this.contractID = contractID;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getOffer() {
 		return offer;

@@ -26,19 +26,40 @@ public class FactoryServiceImpl implements FactoryService{
 	}
 
 	@Override
-	public void saveFactory(Factory factory) {
-		factory.setFactoryId(WLXTUtils.createPrimary());
-		factoryMapper.saveFactory(factory);
+	public void insert(Factory factory) {
+		factory.setId(WLXTUtils.createPrimary());       //设置主键id
+		factory.setState('1');                          //新增的生产厂家默认是启用状态
+		factoryMapper.insert(factory);
 	}
 
 	@Override
-	public Factory findFactoryById(String factoryId) {
-		return factoryMapper.findFactoryById(factoryId);
+	public Factory findFactoryById(String id) {
+		return factoryMapper.findFactoryById(id);
 	}
 
 	@Override
-	public void deleteFactoryById(String factoryId) {
-		factoryMapper.deleteFactoryById(factoryId);
+	public void deleteFactoryById(String id) {
+		factoryMapper.deleteFactoryById(id);
+	}
+	
+	@Override
+    public void delete(String []ids){
+		factoryMapper.delete(ids);
+	}
+
+	@Override
+	public void start(String id) {
+		factoryMapper.start(id);
+	}
+
+	@Override
+	public void stop(String id) {
+		factoryMapper.stop(id);
+	}
+
+	@Override
+	public void update(Factory factory) {
+		factoryMapper.update(factory);
 	}
 	
 }

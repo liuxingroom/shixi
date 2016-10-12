@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xing.wlxt.factory.entity.Factory;
@@ -14,7 +15,7 @@ import com.xing.wlxt.factory.service.FactoryService;
 
 
 @Controller
-@RequestMapping("/factory")
+@RequestMapping("/basicinfo/factory")
 public class FactoryController {
 	@Resource
 	FactoryService factoryService;
@@ -23,22 +24,40 @@ public class FactoryController {
 	 * 获取所有的厂家信息
 	 * @return
 	 */
-	@RequestMapping("/getFactory")
-	public String getFactory(Model model){
+	@RequestMapping("/findFactory.action")
+	public String findFactory(Model model){
 		List<Factory> factorys=factoryService.findFactory();
 		model.addAttribute("dataList", factorys);
 		return "/basicinfo/factory/jFactoryList";
 	}
 	
 	/**
-	 * 新增厂家信息
-	 * @param factory
+	 * 查看生产厂家信息
 	 */
-	@RequestMapping("/saveFactory")
-	public void saveFactory(Factory factory){
-		factoryService.saveFactory(factory);
+	@RequestMapping("/toview.action")
+	public String toview(Model model,String id){
+		Factory obj=factoryService.findFactoryById(id);
+		model.addAttribute("obj",obj);
+		return "/basicinfo/factory/jFactoryView";
 	}
 	
+	/**
+	 * 转向新增厂家的页面
+	 * @param factory
+	 */
+	@RequestMapping("/tocreate.action")
+	public String tocreate(){
+		return "/basicinfo/factory/jFactoryCreate";
+	}
+	
+	/**
+	 * 保存生产厂家(保存后跳转到生产厂家集合页面)
+	 */
+	@RequestMapping("/insert.action")
+	public String insert(Factory factory){
+		factoryService.insert(factory);
+		return "redirect:/basicinfo/factory/findFactory.action";
+	}
 	/**
 	 * 根据id获取厂家信息
 	 * @param factoryId
@@ -46,16 +65,64 @@ public class FactoryController {
 	 */
 	@RequestMapping("/findFactoryById")
 	@ResponseBody
-	public Factory findFactoryById(String factoryId){
-		return factoryService.findFactoryById(factoryId);
+	public Factory findFactoryById(String id){
+		return factoryService.findFactoryById(id);
 	}
 	
 	/**
-	 * 根据id删除用户信息（其实就是修改厂家的状态，即：state值设置为0）
+	 * 根据id删除一条生产厂家信息
 	 * @param factoryId
 	 */
-	@RequestMapping("/deleteFactoryById")
-	public void deleteFactoryById(String factoryId){
-		factoryService.deleteFactoryById(factoryId);
+	@RequestMapping("/deleteFactoryById.action")
+	public String deleteFactoryById(String id){
+		//删除成功后跳转到查询页面
+		factoryService.deleteFactoryById(id);
+	    return "redirect:/basicinfo/factory/findFactory.action"; 
+	}
+	
+	/**
+	 * 根据id集合删除多条生产厂家信息
+	 */
+	@RequestMapping("/delete.action")
+	public String delete(@RequestParam("id")String[] ids){
+		factoryService.delete(ids);
+		return "redirect:/basicinfo/factory/findFactory.action";
+	}
+	/**
+	 * 修改生产厂家
+	 */
+	@RequestMapping("/toupdate.action")
+	public String toupdate(String id,Model model){
+		Factory obj=factoryService.findFactoryById(id);
+		model.addAttribute("obj", obj);
+		return "/basicinfo/factory/jFactoryUpdate";
+	}
+	
+	/**
+	 * 修改生产厂家(修改完成后跳转到生产厂家集合页面)
+	 */
+	@RequestMapping("/update.action")
+	public String update(Factory factory){
+		factoryService.update(factory);
+		return "redirect:/basicinfo/factory/findFactory.action";
+	}
+	
+	
+	/**
+	 * 启用该生产厂家
+	 */
+	@RequestMapping("/start.action")
+	public String start(String  id){
+		factoryService.start(id);
+		return "redirect:/basicinfo/factory/findFactory.action";
+	}
+	
+	/**
+	 * 停用该生产厂家
+	 */
+	@RequestMapping("/stop.action")
+	public String stop(String id){
+		factoryService.stop(id);
+		return "redirect:/basicinfo/factory/findFactory.action";
 	}
 }

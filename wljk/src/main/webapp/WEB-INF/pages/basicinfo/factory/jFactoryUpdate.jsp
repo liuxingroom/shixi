@@ -7,7 +7,8 @@
 <body>
 <form method="post">
 	<input type="hidden" name="id" value="${obj.id}"/>
-
+	<input type="hidden" name="state" value="${obj.state }">
+	
 <div id="menubar">
 <div id="middleMenubar">
 <div id="innerMenubar">
@@ -37,7 +38,7 @@
 	            <td class="columnTitle_mustbe">厂家名称：</td>
 	            <td class="tableContent"><input type="text" name="fullName" value="${obj.fullName}"/></td>
 	            <td class="columnTitle_mustbe">简称：</td>
-	            <td class="tableContent"><input type="text" name="factoryName" value="${obj.factoryName}"/></td>
+	            <td class="tableContent"><input type="text" name="factoryNA" value="${obj.factoryNA}"/></td>
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">联系人：</td>
@@ -59,7 +60,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">备注：</td>
-	            <td class="tableContent"><textarea name="cnote" style="height:120px;">${obj.cnote}</textarea></td>
+	            <td class="tableContent"><textarea name="note" style="height:120px;">${obj.note}</textarea></td>
 	        </tr>
 		</table>
 	</div>

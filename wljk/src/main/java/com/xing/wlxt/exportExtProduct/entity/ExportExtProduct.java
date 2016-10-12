@@ -14,7 +14,7 @@ public class ExportExtProduct implements Serializable{
 	private static final long serialVersionUID = -7822813142691181774L;
 	
 	/**报运货物下附件id*/
-	private String extEProductID;
+	private String id;
 	/**报运货物id*/
 	private String exportProductID;
 	/**生产厂家ID*/
@@ -41,11 +41,11 @@ public class ExportExtProduct implements Serializable{
 	private String productRequest;
 	/**排序号*/
 	private int orderNO;
-	public String getExtEProductID() {
-		return extEProductID;
+	public String getId() {
+		return id;
 	}
-	public void setExtEProductID(String extEProductID) {
-		this.extEProductID = extEProductID;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getExportProductID() {
 		return exportProductID;

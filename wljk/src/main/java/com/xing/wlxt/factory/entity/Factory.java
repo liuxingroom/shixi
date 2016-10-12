@@ -17,7 +17,7 @@ public class Factory implements Serializable{
 	
 	
 	/**生产厂家ID*/
-	private  String factoryId;
+	private  String id;
 	/**厂家全称*/
 	private String fullName;
 	/**厂家名称缩写*/
@@ -42,18 +42,18 @@ public class Factory implements Serializable{
 	/**排序号*/
 	private Integer orderNo;
 	
-	//一下是三个权限字段
+	//以下是三个权限字段
 	/**创建人*/
 	private String createBy;
 	/**创建部门*/
 	private String createDept;
 	/**创建日期*/
 	private Date createTime;
-	public String getFactoryId() {
-		return factoryId;
+	public String getId() {
+		return id;
 	}
-	public void setFactoryId(String factoryId) {
-		this.factoryId = factoryId;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getFullName() {
 		return fullName;

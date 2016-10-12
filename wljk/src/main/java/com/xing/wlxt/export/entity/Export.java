@@ -15,7 +15,7 @@ public class Export implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**报运id*/
-	private String  exportID;
+	private String  id;
 	/**制单日期*/
 	private Date inputDate;
 	/**合同编号集合*/
@@ -52,11 +52,11 @@ public class Export implements Serializable{
 	private String createDept;
 	/**创建时间*/
 	private String createTime;
-	public String getExportID() {
-		return exportID;
+	public String getId() {
+		return id;
 	}
-	public void setExportID(String exportID) {
-		this.exportID = exportID;
+	public void setId(String id) {
+		this.id =id;
 	}
 	public Date getInputDate() {
 		return inputDate;

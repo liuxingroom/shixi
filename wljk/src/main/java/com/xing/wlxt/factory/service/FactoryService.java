@@ -13,9 +13,9 @@ public interface FactoryService {
 	public List<Factory> findFactory();
 
 	/**
-	 * 保存生产厂家的信息
+	 * 添加新的生产厂家的信息
 	 */
-    public void saveFactory(Factory factory);
+    public void insert(Factory factory);
 	
 	/**
 	 * 根据id获取生产厂家的信息
@@ -27,5 +27,29 @@ public interface FactoryService {
 	 * @param factoryId
 	 */
 	public void deleteFactoryById(String factoryId);
+
+	/**
+	 * 根据id集合来删除多条生产厂家信息
+	 * @param ids
+	 */
+	public void delete(String[] ids);
+	
+	/**
+	 * 启用生产厂家
+	 * @param id
+	 */
+	public void start(String id);
+
+	/**
+	 * 停用该生产厂家
+	 * @param id
+	 */
+	public void stop(String id);
+
+	/**
+	 * 修改生产厂家信息
+	 * @param factory
+	 */
+	public void update(Factory factory);
 
 }

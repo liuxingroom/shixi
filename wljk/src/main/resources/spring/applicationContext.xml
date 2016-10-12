@@ -49,6 +49,7 @@
 				<tx:method name="update*" propagation="REQUIRED"/>
 				<tx:method name="delete*" propagation="REQUIRED"/>
 				<tx:method name="save*" propagation="REQUIRED"/>
+				<tx:method name="add*" propagation="REQUIRED"/>
 				
 				<!-- 方法名以 find ，get， view开头的方法 只能进行只读操作  -->
 				<tx:method name="find*" read-only="true"/>

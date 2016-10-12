@@ -13,7 +13,7 @@
     <div id="navMenubar">
 <ul>
 <li id="save"><a href="#" onclick="formSubmit('insert.action','_self');">确定</a></li>
-<li id="back"><a href="list.action">返回</a></li>
+<li id="back"><a href="findFactory.action">返回</a></li>
 </ul>
     </div>
 </div>
@@ -36,7 +36,7 @@
 	            <td class="columnTitle_mustbe">厂家名称：</td>
 	            <td class="tableContent"><input type="text" name="fullName"/></td>
 	            <td class="columnTitle_mustbe">简称：</td>
-	            <td class="tableContent"><input type="text" name="factoryName"/></td>
+	            <td class="tableContent"><input type="text" name="factoryNA"/></td>
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">联系人：</td>
@@ -58,7 +58,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">备注：</td>
-	            <td class="tableContent"><textarea name="cnote" style="height:120px;"></textarea></td>
+	            <td class="tableContent"><textarea name="note" style="height:120px;"></textarea></td>
 	        </tr>
 		</table>
 	</div>

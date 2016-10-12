@@ -16,7 +16,7 @@
 <li id="view"><a href="#" onclick="formSubmit('toview.action','_self');this.blur();">查看</a></li>
 <li id="new"><a href="#" onclick="formSubmit('tocreate.action','_self');this.blur();">新增</a></li>
 <li id="update"><a href="#" onclick="formSubmit('toupdate.action','_self');this.blur();">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('deleteById.action','_self');this.blur();">删除</a></li>
+<li id="delete"><a href="#" onclick="formSubmit('deleteFactoryById.action','_self');this.blur();">删除</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('delete.action','_self');this.blur();">删除N</a></li>
 <li id="new"><a href="#" onclick="formSubmit('start.action','_self');this.blur();">启用</a></li>
 <li id="new"><a href="#" onclick="formSubmit('stop.action','_self');this.blur();">停用</a></li>
@@ -60,15 +60,15 @@
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
 		<td><a href="toview.action?id=${o.id}">${o.fullName}</a></td>
-		<td>${o.factoryName}</td>
+		<td>${o.factoryNA}</td>
 		<td>${o.contacts}</td>
 		<td>${o.phone}</td>
 		<td>${o.mobile}</td>
 		<td>${o.fax}</td>
 		<td>${o.inspector}</td>
 		<td>
-			<c:if test="${o.state==1}"><a href="stop.action?id=${o.id}"><font color="green">启用</font></a></c:if>
-			<c:if test="${o.state==0}"><a href="start.action?id=${o.id}">停用</a></c:if>
+			<c:if test="${o.state=='1'}"><a href="stop.action?id=${o.id}"><font color="green">启用</font></a></c:if>
+			<c:if test="${o.state=='0'}"><a href="start.action?id=${o.id}">停用</a></c:if>
 		</td>
 	</tr>
 	</c:forEach>

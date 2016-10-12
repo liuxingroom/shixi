@@ -3,7 +3,7 @@
 
 <mapper namespace="com.xing.wlxt.factory.dao.FactoryMapper">
 	<resultMap type="com.xing.wlxt.factory.entity.Factory" id="factoryResultMap">
-		<id column="t_factory_id_" jdbcType="VARCHAR" property="factoryId"/>
+		<id column="t_factory_id_" jdbcType="VARCHAR" property="id"/>
 		<result column="t_factory_name_" jdbcType="VARCHAR"  property="fullName"/>
 		<result column="t_factory_na_" jdbcType="VARCHAR" property="factoryNA"/>
 		<result column="t_factory_contacts_" jdbcType="VARCHAR"  property="contacts"/>
@@ -53,17 +53,17 @@
 			<include refid="factorySql"></include>
 		</trim>
 		from FACTORY_C t_factory
-		where t_factory.FACTORY_ID=#{factoryId}
+		where t_factory.FACTORY_ID=#{id}
 		
 	</select>
 	
-	<!-- 保存新的生产厂 -->
-	<insert id="saveFactory" parameterType="com.xing.wlxt.factory.entity.Factory">
+	<!-- 添加新的生产厂信息 -->
+	<insert id="insert" parameterType="com.xing.wlxt.factory.entity.Factory">
 		insert into FACTORY_C
 		(FACTORY_ID,FULL_NAME,FACTORY_NA,CONTACTS,PHONE,MOBILE,FAX,NOTE,INSPECTOR,STATE,ORDER_NO,CREATE_BY,CREATE_DEPT,CREATE_TIME)
 		values
 		(
-			#{factoryId,jdbcType=VARCHAR},
+			#{id,jdbcType=VARCHAR},
 			#{fullName,jdbcType=VARCHAR},
 			#{factoryNA,jdbcType=VARCHAR},
 			#{contacts,jdbcType=VARCHAR},
@@ -81,11 +81,66 @@
 	</insert>
 	
 	<!-- 根据id删除用户信息（其实就是修改厂家的状态，即：state值设置为0） -->
-	<update id="deleteFactoryById" parameterType="String">
+	<!-- <update id="deleteFactoryById" parameterType="String">
 		update FACTORY_C
 		<set>
 			STATE='0'
 		</set>
-		where FACTORY_ID=#{factoryId,jdbcType=VARCHAR}
+		where FACTORY_ID=#{id,jdbcType=VARCHAR}
+	</update>
+	 -->
+	<!-- 根据id来删除生产厂家的信息 -->
+	<delete id="deleteFactoryById" parameterType="String">
+		delete from FACTORY_C  t_factory
+		where t_factory.FACTORY_ID=#{id}
+	</delete>
+	
+	<!-- 根据id集合来删除生产厂家信息 -->
+	<delete id="delete">
+		delete from FACTORY_C t_factory where t_factory.FACTORY_ID
+		<foreach collection="ids" item="id" open="in(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 启用生产厂家 -->
+	<update id="start" parameterType="String">
+		update FACTORY_C 
+		<set>
+			STATE='1'
+		</set>
+		where FACTORY_ID=#{id}
+	</update>
+	
+	<!-- 停用生产厂家 -->
+	<update id="stop" parameterType="String">
+		update FACTORY_C
+		<set>
+			STATE='0'
+		</set>
+		where FACTORY_ID=#{id}
+	</update>
+	
+	<!-- 修改生产厂家信息 -->
+	<update id="update" parameterType="com.xing.wlxt.factory.entity.Factory">
+		update FACTORY_C 
+		<set>
+			<trim suffixOverrides=",">
+				<if test="fullName != null">FULL_NAME=#{fullName,jdbcType=VARCHAR},</if>
+				<if test="factoryNA != null">FACTORY_NA=#{factoryNA,jdbcType=VARCHAR},</if>
+				<if test="contacts != null">CONTACTS=#{contacts,jdbcType=VARCHAR},</if>
+				<if test="phone != null">PHONE=#{phone,jdbcType=VARCHAR},</if>
+				<if test="mobile != null">MOBILE=#{mobile,jdbcType=VARCHAR},</if>
+				<if test="fax != null">FAX=#{fax,jdbcType=VARCHAR},</if>
+				<if test="note != null">NOTE=#{note,jdbcType=VARCHAR},</if>
+				<if test="inspector != null">INSPECTOR=#{inspector,jdbcType=VARCHAR},</if>
+				<if test="state != null">STATE=#{state,jdbcType=CHAR},</if>
+				<if test="orderNo != null">ORDER_NO=#{orderNo,jdbcType=VARCHAR},</if>
+				<if test="createBy != null">CREATE_BY=#{createBy,jdbcType=VARCHAR},</if>
+				<if test="createDept != null">CREATE_DEPT=#{createDept,jdbcType=VARCHAR},</if>
+				<if test="createTime != null">CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},</if>
+			</trim>
+		</set>
+		where FACTORY_ID=#{id}
 	</update>
 </mapper>
