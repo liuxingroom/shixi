@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,10 +24,10 @@ public class FactoryController {
 	 * @return
 	 */
 	@RequestMapping("/getFactory")
-	@ResponseBody
-	public List<Factory> getFactory(){
+	public String getFactory(Model model){
 		List<Factory> factorys=factoryService.findFactory();
-		return factorys;
+		model.addAttribute("dataList", factorys);
+		return "/basicinfo/factory/jFactoryList";
 	}
 	
 	/**
@@ -46,7 +47,6 @@ public class FactoryController {
 	@RequestMapping("/findFactoryById")
 	@ResponseBody
 	public Factory findFactoryById(String factoryId){
-		factoryId="12";
 		return factoryService.findFactoryById(factoryId);
 	}
 	
@@ -56,7 +56,6 @@ public class FactoryController {
 	 */
 	@RequestMapping("/deleteFactoryById")
 	public void deleteFactoryById(String factoryId){
-		factoryId="12";
 		factoryService.deleteFactoryById(factoryId);
 	}
 }
