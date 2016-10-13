@@ -12,7 +12,7 @@
 		<result column="t_factory_fax_" jdbcType="VARCHAR" property="fax"/>
 		<result column="t_factory_note_" jdbcType="VARCHAR"  property="note"/>
 		<result column="t_factory_inspector_" jdbcType="VARCHAR" property="inspector"/>
-		<result column="t_factory_state_" jdbcType="CHAR"  property="state"/>
+		<result column="t_factory_state_" jdbcType="INTEGER"  property="state"/>
 		<result column="t_factory_order_no_" jdbcType="INTEGER" property="orderNo"/>
 		<result column="t_factory_create_by_" jdbcType="VARCHAR"  property="createBy"/>
 		<result column="t_factory_create_dept_" jdbcType="VARCHAR" property="createDept"/>

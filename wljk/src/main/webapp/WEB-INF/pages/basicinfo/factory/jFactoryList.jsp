@@ -67,8 +67,8 @@
 		<td>${o.fax}</td>
 		<td>${o.inspector}</td>
 		<td>
-			<c:if test="${o.state=='1'}"><a href="stop.action?id=${o.id}"><font color="green">启用</font></a></c:if>
-			<c:if test="${o.state=='0'}"><a href="start.action?id=${o.id}">停用</a></c:if>
+			<c:if test="${o.state==1}"><a href="stop.action?id=${o.id}"><font color="green">启用</font></a></c:if>
+			<c:if test="${o.state==0}"><a href="start.action?id=${o.id}">停用</a></c:if>
 		</td>
 	</tr>
 	</c:forEach>

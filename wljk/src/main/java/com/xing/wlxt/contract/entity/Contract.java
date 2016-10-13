@@ -14,6 +14,11 @@ public class Contract implements Serializable{
 	private static final long serialVersionUID = -6712463135085863087L;
 	/**购销合同id*/
 	private String id;
+	//货物数（需要在页面显示）
+	private String cpnum;
+	//附件数 （需要在页面显示）
+	private String extnum;
+	
 	/**收购方*/
 	private String offer;
 	/**
@@ -63,7 +68,7 @@ public class Contract implements Serializable{
 	/**状态
 	 * 0草稿 1已上报待报运
 	 * */
-	private int state;
+	private char state;
 	/**走货状态
 	 * 0未走货 1部分 2全部
 	 * */
@@ -73,12 +78,26 @@ public class Contract implements Serializable{
 	/**创建部门*/
 	private String createDept;
 	/**创建日期*/
-	private String createTime;
+	private Date createTime;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	
+	public String getCpnum() {
+		return cpnum;
+	}
+	public void setCpnum(String cpnum) {
+		this.cpnum = cpnum;
+	}
+	public String getExtnum() {
+		return extnum;
+	}
+	public void setExtnum(String extnum) {
+		this.extnum = extnum;
 	}
 	public String getOffer() {
 		return offer;
@@ -176,10 +195,10 @@ public class Contract implements Serializable{
 	public void setOldState(int oldState) {
 		this.oldState = oldState;
 	}
-	public int getState() {
+	public char getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(char state) {
 		this.state = state;
 	}
 	public int getOutState() {
@@ -200,10 +219,10 @@ public class Contract implements Serializable{
 	public void setCreateDept(String createDept) {
 		this.createDept = createDept;
 	}
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 	

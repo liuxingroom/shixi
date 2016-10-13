@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xing.wlxt.base.controller.BaseController;
 import com.xing.wlxt.factory.entity.Factory;
 import com.xing.wlxt.factory.service.FactoryService;
 
 
 @Controller
 @RequestMapping("/basicinfo/factory")
-public class FactoryController {
+public class FactoryController extends BaseController{
 	@Resource
 	FactoryService factoryService;
 	

@@ -28,7 +28,7 @@ public class FactoryServiceImpl implements FactoryService{
 	@Override
 	public void insert(Factory factory) {
 		factory.setId(WLXTUtils.createPrimary());       //设置主键id
-		factory.setState('1');                          //新增的生产厂家默认是启用状态
+		factory.setState(1);                          //新增的生产厂家默认是启用状态
 		factoryMapper.insert(factory);
 	}
 

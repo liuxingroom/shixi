@@ -38,7 +38,7 @@ public class Factory implements Serializable{
 	 * 状态  表示物流公司与该厂家的合作关系
 	 * 1（正常）表示现在在合作，0（停用）现在没有合作
 	 * */
-	private char state;
+	private int state;
 	/**排序号*/
 	private Integer orderNo;
 	
@@ -103,10 +103,10 @@ public class Factory implements Serializable{
 	public void setInspector(String inspector) {
 		this.inspector = inspector;
 	}
-	public Character getState() {
+	public int getState() {
 		return state;
 	}
-	public void setState(Character state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 	public Integer getOrderNo() {
