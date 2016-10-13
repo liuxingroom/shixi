@@ -43,7 +43,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">合同号：</td>
-	            <td class="tableContent"><input type="text" name="contractNo" value="${obj.contractNo}"/></td>
+	            <td class="tableContent"><input type="text" name="contractNo" value="${obj.contractNO}"/></td>
 	            <td class="columnTitle_mustbe">打印版式：</td>
 	            <td class="tableContentAuto">
 	            	<input type="radio" name="printStyle" value="2" class="input" <c:if test="${obj.printStyle=='2'}">checked</c:if>>两款

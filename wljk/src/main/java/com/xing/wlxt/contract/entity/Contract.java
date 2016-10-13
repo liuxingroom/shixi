@@ -20,7 +20,7 @@ public class Contract implements Serializable{
 	private String extnum;
 	
 	/**收购方*/
-	private String offer;
+	private String offeror;
 	/**
 	 * 合同号(自动产生)
 	 * */
@@ -40,7 +40,7 @@ public class Contract implements Serializable{
 	/**重要程度
 	 * 打印时标识几个星,对应说明中的内容
 	 * */
-	private Integer inportNum;
+	private Integer importNum;
 	/**要求*/
 	private String crequest;
 	/**客户名称
@@ -54,7 +54,7 @@ public class Contract implements Serializable{
 	/**船期
 	 * 出货表中的字段
 	 * */
-	private Date shipName;
+	private Date shipTime;
 	/**贸易条款
 	 * 出货表中的字段
 	 * */
@@ -68,7 +68,7 @@ public class Contract implements Serializable{
 	/**状态
 	 * 0草稿 1已上报待报运
 	 * */
-	private char state;
+	private int state;
 	/**走货状态
 	 * 0未走货 1部分 2全部
 	 * */
@@ -99,11 +99,11 @@ public class Contract implements Serializable{
 	public void setExtnum(String extnum) {
 		this.extnum = extnum;
 	}
-	public String getOffer() {
-		return offer;
+	public String getOfferor() {
+		return offeror;
 	}
-	public void setOffer(String offer) {
-		this.offer = offer;
+	public void setOfferor(String offeror) {
+		this.offeror = offeror;
 	}
 	public String getContractNO() {
 		return contractNO;
@@ -141,11 +141,11 @@ public class Contract implements Serializable{
 	public void setTotalAmount(Double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	public Integer getInportNum() {
-		return inportNum;
+	public Integer getImportNum() {
+		return importNum;
 	}
-	public void setInportNum(Integer inportNum) {
-		this.inportNum = inportNum;
+	public void setImportNum(Integer importNum) {
+		this.importNum = importNum;
 	}
 	public String getCrequest() {
 		return crequest;
@@ -165,11 +165,11 @@ public class Contract implements Serializable{
 	public void setDeliveryPeriod(Date deliveryPeriod) {
 		this.deliveryPeriod = deliveryPeriod;
 	}
-	public Date getShipName() {
-		return shipName;
+	public Date getShipTime() {
+		return shipTime;
 	}
-	public void setShipName(Date shipName) {
-		this.shipName = shipName;
+	public void setShipTime(Date shipTime) {
+		this.shipTime = shipTime;
 	}
 	public String getTradeTerms() {
 		return tradeTerms;
@@ -195,10 +195,10 @@ public class Contract implements Serializable{
 	public void setOldState(int oldState) {
 		this.oldState = oldState;
 	}
-	public char getState() {
+	public int getState() {
 		return state;
 	}
-	public void setState(char state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 	public int getOutState() {

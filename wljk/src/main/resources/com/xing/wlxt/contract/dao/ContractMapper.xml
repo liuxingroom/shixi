@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xing.wlxt.contract.dao.ContractMapper">
+   <resultMap type="com.xing.wlxt.contract.entity.Contract" id="contractResultMap">
+		<id column="CONTRACT_ID" property="id" jdbcType="VARCHAR"/>
+		
+		<!-- 虚拟字段  -->
+		<result column="CPNUM" property="cpnum" jdbcType="VARCHAR"/>
+		<result column="EXTUNM" property="extnum" jdbcType="VARCHAR"/>
+		
+		<result column="OFFEROR" property="offeror" jdbcType="VARCHAR"/>
+		<result column="CONTRACT_NO" property="contractNO" jdbcType="VARCHAR"/>
+		<result column="SIGNING_DATE" property="signingDate" jdbcType="TIMESTAMP"/>
+		<result column="INPUT_BY" property="inputBy" jdbcType="VARCHAR"/>
+		<result column="CHECK_BY" property="checkBy" jdbcType="VARCHAR"/>
+		<result column="INSPECTOR" property="inspector" jdbcType="VARCHAR"/>
+		<result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="DOUBLE"/>
+		<result column="IMPORT_NUM" property="importNum" jdbcType="INTEGER"/>
+		<result column="CREQUEST" property="crequest" jdbcType="VARCHAR"/>
+		<result column="CUSTOM_NAME" property="customName" jdbcType="VARCHAR"/>
+		<result column="DELIVERY_PERIOD" property="deliveryPeriod" jdbcType="TIMESTAMP"/>
+		<result column="SHIP_TIME" property="shipTime" jdbcType="TIMESTAMP"/>
+		<result column="TRADE_TERMS" property="tradeTerms" jdbcType="VARCHAR"/>
+		<result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+		<result column="PRINT_STYLE" property="printStyle" jdbcType="CHAR"/>
+		<result column="OLD_STATE" property="oldState" jdbcType="INTEGER"/>
+		<result column="STATE" property="state" jdbcType="INTEGER"/>
+		<result column="OUT_STATE" property="outState" jdbcType="INTEGER"/>
+		<result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+		<result column="CREATE_DEPT" property="createDept" jdbcType="VARCHAR"/>
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- 查询所有的购销合同
+		附件数，货物数这两个虚拟字段是采用sql语句计算出来的（虚拟字段：在数据库中不存在该字段）
+		总金额也是通过sql语句计算出来的
+	 -->
+	<select id="find" resultMap="contractResultMap">
+		select (select count(*)
+          from contract_product_c cp
+         where cp.contract_id = c.contract_id) CPNUM,
+       (select count(*)
+          from ext_cproduct_c ep
+         where ep.contract_product_id in
+               (select cp.contract_product_id
+                  from contract_product_c cp
+                 where cp.contract_id = c.contract_id)) EXTUNM,
+       (nvl((select sum(cp.price * cp.amount) cptotal
+              from contract_product_c cp
+             where cp.contract_id = c.contract_id),
+            0) + nvl((select sum(ep.price * ep.amount) exttotal
+                        from ext_cproduct_c ep
+                       where ep.contract_product_id in
+                             (select cp.contract_product_id
+                                from contract_product_c cp
+                               where cp.contract_id = c.contract_id)),
+                      0)) total_amount,
+       c.CONTRACT_ID,
+       c.OFFEROR,
+       c.CONTRACT_NO,
+       c.SIGNING_DATE,
+       c.INPUT_BY,
+       c.CHECK_BY,
+       c.INSPECTOR,
+       c.IMPORT_NUM,
+       c.CREQUEST,
+       c.CUSTOM_NAME,
+       c.DELIVERY_PERIOD,
+       c.SHIP_TIME,
+       c.TRADE_TERMS,
+       c.REMARK,
+       c.PRINT_STYLE,
+       c.OLD_STATE,
+       c.STATE,
+       c.OUT_STATE
+  from contract_c c
+	</select>
+	
+	<!-- 根据购销合同的id 来获取购销合同的信息 -->
+	<select id="get" parameterType="String" resultMap="contractResultMap">
+		select * from CONTRACT_C where CONTRACT_ID=#{id}
+	</select>
+	
+	
+	<!-- 根据购销合同集合来删除购销合同的信息 -->
+	<delete id="delete">
+		delete from CONTRACT_C where CONTRACT_ID 
+		<foreach collection="ids" open="in(" close=")" item="id" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

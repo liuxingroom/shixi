@@ -66,7 +66,7 @@
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
 		<td>${o.customName}</td>
-		<td><a href="toview.action?id=${o.id}">${o.contractNo}</a></td>
+		<td><a href="toview.action?id=${o.id}">${o.contractNO}</a></td>
 		<td align="center">${o.cpnum}/${o.extnum}</td>
 		<td>${o.inputBy}</td>
 		<td>${o.checkBy}</td>
