@@ -14,7 +14,7 @@
 <body>
 <form method="post">
 	<input type="text" name="id" value="${obj.id}"/>
-	<input type="text" name="contractId" value="${obj.contractId}"/>
+	<input type="text" name="contractID" value="${obj.contractID}"/>
 
 <div id="menubar">
 <div id="middleMenubar">
@@ -44,13 +44,13 @@
 	        <tr>
 	            <td class="columnTitle_mustbe">厂家名称：</td>
 	            <td class="tableContent">
-	            	<select name="factoryId" onchange="setFactoryName(this.options[this.selectedIndex].text);">
+	            	<select name="factoryID" onchange="setFactoryName(this.options[this.selectedIndex].text);">
 		            	<option value="">--请选择--</option>
 	            		<c:forEach items="${factoryList}" var="f">
-	            			<option value="${f.id}" <c:if test="${obj.factoryId==f.id}">selected</c:if>>${f.factoryName}</option>
+	            			<option value="${f.id}" <c:if test="${obj.factoryID==f.id}">selected</c:if>>${f.factoryNA}</option>
 	            		</c:forEach>
 	            	</select>
-	            	<input type="hidden" id="factoryName" name="factoryName" value="${obj.factoryName}"/>
+	            	<input type="hidden" id="factoryName" name="factoryNa" value="${obj.factoryNa}"/>
 	            </td>
 	            <td class="columnTitle_mustbe">货号：</td>
 	            <td class="tableContent"><input type="text" name="productNo" value="${obj.productNo}"/></td>
@@ -61,7 +61,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">数量：</td>
-	            <td class="tableContent"><input type="text" name="cnumber" value="${obj.cnumber}"/></td>
+	            <td class="tableContent"><input type="text" name="cNumber" value="${obj.cNumber}"/></td>
 	            <td class="columnTitle_mustbe">包装单位：</td>
 	            <td class="tableContent"><input type="text" name="packingUnit" value="${obj.packingUnit}"/></td>
 	        </tr>
@@ -75,7 +75,7 @@
 	            <td class="columnTitle_mustbe">单价：</td>
 	            <td class="tableContent"><input type="text" name="price" value="${obj.price}"/></td>
 	            <td class="columnTitle_mustbe">排序号：</td>
-	            <td class="tableContent"><input type="text" name="orderNo" value="${obj.orderNo}"/></td>
+	            <td class="tableContent"><input type="text" name="orderNo" value="${obj.orderNO}"/></td>
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">货物描述：</td>

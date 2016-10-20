@@ -13,6 +13,7 @@ import com.xing.wlxt.contract.entity.Contract;
 import com.xing.wlxt.contract.view.ContractVO;
 import com.xing.wlxt.contractExtProduct.dao.ContractExtProductMapper;
 import com.xing.wlxt.contractProduct.dao.ContractProductMapper;
+import com.xing.wlxt.utils.WLXTUtils;
 
 @Service
 public class ContractServiceImpl implements ContractService{
@@ -65,6 +66,19 @@ public class ContractServiceImpl implements ContractService{
 	public ContractVO view(String id) {
 		ContractVO obj=contractMapper.view(id);
 		return obj;
+	}
+
+	@Override
+	public void insert(Contract contract) {
+		contract.setId(WLXTUtils.createPrimary());
+		contract.setState(0);                        //0草稿 1已上报
+		contractMapper.insert(contract);
+	}
+
+	@Override
+	public void update(Contract contract) {
+		contractMapper.update(contract);
+		System.out.println();
 	}
 	
 	

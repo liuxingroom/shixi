@@ -3,6 +3,25 @@
 
 <mapper namespace="com.xing.wlxt.contractProduct.dao.ContractProductMapper">
    
+   <resultMap type="com.xing.wlxt.contractProduct.entity.ContractProduct" id="contractProductRM">
+   		<id column="CONTRACT_PRODUCT_ID" property="id" jdbcType="VARCHAR"/>
+   		<result column="FACTORY_ID" property="factoryID" jdbcType="VARCHAR"/>
+   		<result column="CONTRACT_ID" property="contractID" jdbcType="VARCHAR"/>
+   		<result column="FACTORY_NA" property="factoryNa" jdbcType="VARCHAR"/>
+   		<result column="PRODUCT_NO" property="productNo" jdbcType="VARCHAR"/>
+   		<result column="PRODUCT_IMAGE" property="productImage" jdbcType="VARCHAR"/>
+   		<result column="PRODUCT_DESC" property="productDesc" jdbcType="VARCHAR"/>
+   		<result column="CNUMBER" property="cNumber" jdbcType="INTEGER"/>
+   		<result column="OUT_NUMBER" property="outNumber" jdbcType="INTEGER"/>
+   		<result column="LOADING_RATE" property="loadingRate" jdbcType="VARCHAR"/>
+   		<result column="BOX_NUM" property="boxNum" jdbcType="VARCHAR"/>
+   		<result column="PACKING_UNIT" property="packingUnit" jdbcType="VARCHAR"/>
+   		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
+   		<result column="AMOUNT" property="amount" jdbcType="DOUBLE"/>
+   		<result column="FINISHED" property="finished" jdbcType="INTEGER"/>
+   		<result column="EXTS" property="exts" jdbcType="VARCHAR"/>
+   		<result column="ORDER_NO" property="orderNO" jdbcType="INTEGER"/>
+   </resultMap>
 	
 	<!-- 根据购销合同id来删除货物信息 -->
 	<delete id="delete">
@@ -12,4 +31,42 @@
        			#{id}
        	   </foreach>
 	</delete>
+	
+	<!-- 通过购销合同id获取该购销合同下的货物信息 -->
+	<select id="findContractProductByContractId" parameterType="String" resultMap="contractProductRM">
+		select * from contract_product_c where CONTRACT_ID=#{contractId}
+	</select>
+	
+	<!-- 新增购销合同中的附件信息 -->
+	<insert id="insert" parameterType="com.xing.wlxt.contractProduct.entity.ContractProduct">
+		insert into contract_product_c(CONTRACT_PRODUCT_ID,FACTORY_ID,CONTRACT_ID,FACTORY_NA,
+									PRODUCT_NO,PRODUCT_IMAGE,PRODUCT_DESC,CNUMBER,OUT_NUMBER,
+									LOADING_RATE,BOX_NUM,PACKING_UNIT,PRICE,AMOUNT,FINISHED,EXTS,ORDER_NO)
+		values
+		(
+			#{id},
+			#{factoryID,jdbcType=VARCHAR},
+			#{contractID,jdbcType=VARCHAR},
+			#{factoryNa,jdbcType=VARCHAR},
+			#{productNo,jdbcType=VARCHAR},
+			#{productImage,jdbcType=VARCHAR},
+			#{productDesc,jdbcType=VARCHAR},
+			#{cNumber,jdbcType=INTEGER},
+			#{outNumber,jdbcType=INTEGER},
+			#{loadingRate,jdbcType=VARCHAR},
+			#{boxNum,jdbcType=VARCHAR},
+			#{packingUnit,jdbcType=VARCHAR},
+			#{price,jdbcType=DOUBLE},
+			#{amount,jdbcType=DOUBLE},
+			#{finished,jdbcType=INTEGER},
+			#{exts,jdbcType=VARCHAR},
+			#{orderNO,jdbcType=INTEGER}
+   	
+		)
+	</insert>
+	
+	<!-- 通过货物id来获取货物信息 -->
+	<select id="findContractProductById" parameterType="String" resultMap="contractProductRM">
+		select * from contract_product_c where CONTRACT_PRODUCT_ID=#{id}
+	</select>
 </mapper>

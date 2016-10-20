@@ -40,7 +40,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle">合同号：</td>
-	            <td class="tableContent">${obj.contractNo}</td>
+	            <td class="tableContent">${obj.contractNO}</td>
 	            <td class="columnTitle">打印版式：</td>
 	            <td class="tableContentAuto">
 	            	<c:if test="${obj.printStyle=='2'}">两款</c:if>
@@ -114,24 +114,24 @@
 	</thead>
 	<tbody class="tableBody" >
 	
-	<c:forEach items="${obj.contractProducts}" var="cp" varStatus="status">
+	<c:forEach items="${obj.contractProduct}" var="cp" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td>${status.index+1}</td>
-		<td>${cp.factory.factoryName}</td>
+		<td>${cp.factoryID.factoryNA}</td>
 		<td>${cp.productNo}</td>
-		<td>${cp.cnumber}</td>
+		<td>${cp.cNumber}</td>
 		<td>${cp.packingUnit}</td>
 		<td>${cp.loadingRate}</td>
 		<td>${cp.boxNum}</td>
 		<td>${cp.price}</td>
 		<td>${cp.amount}</td>
 	</tr>
-	<c:forEach items="${cp.extCproducts}" var="ext" varStatus="status">
+	<c:forEach items="${cp.contractExtProduct}" var="ext" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td><font color="blue">附件：${status.index+1}</font></td>
-		<td>${ext.factory.factoryName}</td>
+		<td>${ext.factoryID.factoryNA}</td>
 		<td>${ext.productNo}</td>
-		<td>${ext.cnumber}</td>
+		<td>${ext.cNumber}</td>
 		<td>${ext.packingUnit}</td>
 		<td></td>
 		<td></td>

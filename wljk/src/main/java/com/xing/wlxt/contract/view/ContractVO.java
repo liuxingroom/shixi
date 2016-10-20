@@ -15,11 +15,11 @@ public class ContractVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**购销合同id*/
-	private String contractID;
+	private String id;
 	/**购销合同下的货物信息*/
 	private List<ContractProductVO> contractProduct;
 	/**收购方*/
-	private String offer;
+	private String offeror;
 	/**
 	 * 合同号(自动产生)
 	 * */
@@ -39,7 +39,7 @@ public class ContractVO implements Serializable{
 	/**重要程度
 	 * 打印时标识几个星,对应说明中的内容
 	 * */
-	private Integer inportNum;
+	private Integer importNum;
 	/**要求*/
 	private String crequest;
 	/**客户名称
@@ -53,7 +53,7 @@ public class ContractVO implements Serializable{
 	/**船期
 	 * 出货表中的字段
 	 * */
-	private Date shipName;
+	private Date shipTime;
 	/**贸易条款
 	 * 出货表中的字段
 	 * */
@@ -78,11 +78,11 @@ public class ContractVO implements Serializable{
 	private String createDept;
 	/**创建日期*/
 	private String createTime;
-	public String getContractID() {
-		return contractID;
+	public String getId() {
+		return id;
 	}
-	public void setContractID(String contractID) {
-		this.contractID = contractID;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public List<ContractProductVO> getContractProduct() {
 		return contractProduct;
@@ -90,11 +90,11 @@ public class ContractVO implements Serializable{
 	public void setContractProduct(List<ContractProductVO> contractProduct) {
 		this.contractProduct = contractProduct;
 	}
-	public String getOffer() {
-		return offer;
+	public String getOfferor() {
+		return offeror;
 	}
-	public void setOffer(String offer) {
-		this.offer = offer;
+	public void setOfferor(String offeror) {
+		this.offeror = offeror;
 	}
 	public String getContractNO() {
 		return contractNO;
@@ -132,11 +132,11 @@ public class ContractVO implements Serializable{
 	public void setTotalAmount(Double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	public Integer getInportNum() {
-		return inportNum;
+	public Integer getImportNum() {
+		return importNum;
 	}
-	public void setInportNum(Integer inportNum) {
-		this.inportNum = inportNum;
+	public void setImportNum(Integer importNum) {
+		this.importNum = importNum;
 	}
 	public String getCrequest() {
 		return crequest;
@@ -156,11 +156,11 @@ public class ContractVO implements Serializable{
 	public void setDeliveryPeriod(Date deliveryPeriod) {
 		this.deliveryPeriod = deliveryPeriod;
 	}
-	public Date getShipName() {
-		return shipName;
+	public Date getShipTime() {
+		return shipTime;
 	}
-	public void setShipName(Date shipName) {
-		this.shipName = shipName;
+	public void setShipTime(Date shipTime) {
+		this.shipTime = shipTime;
 	}
 	public String getTradeTerms() {
 		return tradeTerms;

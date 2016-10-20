@@ -53,6 +53,15 @@ public class ContractController extends BaseController{
 	}
 	
 	/**
+	 * 插入新的购销合同的信息
+	 */
+	@RequestMapping("/insert.action")
+	public String insert(Contract contract){
+		contractService.insert(contract);
+		return "redirect:/cargo/contract/list.action";
+	}
+	
+	/**
 	 * 获取数据并跳转到更新页面
 	 * @param model
 	 * @param id
@@ -65,6 +74,15 @@ public class ContractController extends BaseController{
 		return "/cargo/contract/jContractUpdate";
 	}
 	
+	/**
+	 * 修改购销合同
+	 */
+	@RequestMapping("/update.action")
+	public String update(Contract contract){
+		contractService.update(contract);
+		return "redirect:/cargo/contract/list.action";
+	}
+
 	/**
 	 * 根据id集合来删除购销合同信息（删除成功后跳转到list集合页面）
 	 * @param ids

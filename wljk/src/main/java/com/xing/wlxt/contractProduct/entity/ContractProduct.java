@@ -34,7 +34,7 @@ public class ContractProduct implements Serializable{
 	/**箱数*/
 	private String boxNum;
 	/**包装单位*/
-	private String packingNuit;
+	private String packingUnit;
 	/**单价*/
 	private Double price;
 	/**总金额*/
@@ -115,11 +115,11 @@ public class ContractProduct implements Serializable{
 	public void setBoxNum(String boxNum) {
 		this.boxNum = boxNum;
 	}
-	public String getPackingNuit() {
-		return packingNuit;
+	public String getPackingUnit() {
+		return packingUnit;
 	}
-	public void setPackingNuit(String packingNuit) {
-		this.packingNuit = packingNuit;
+	public void setPackingUnit(String packingUnit) {
+		this.packingUnit = packingUnit;
 	}
 	public Double getPrice() {
 		return price;

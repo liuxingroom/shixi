@@ -8,7 +8,10 @@
 </head>
 <body>
 <form method="post">
+	<!-- 用来记录购销合同的id  -->
 	<input type="hidden" name="id" value="${obj.id}"/>
+	<!-- 用来记录购销合同的状态 -->
+	<input type="hidden" name="state" value="${obj.state}"/>
 
 <div id="menubar">
 <div id="middleMenubar">

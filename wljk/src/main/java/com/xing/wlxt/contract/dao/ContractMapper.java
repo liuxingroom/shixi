@@ -44,4 +44,16 @@ public interface ContractMapper {
 	 */
 	public ContractVO view(String id);
 
+	/**
+	 * 添加新的购销合同信息
+	 * @param contract
+	 */
+	public void insert(Contract contract);
+	
+	/**
+	 * 修改购销合同信息
+	 * @param contract
+	 */
+	public void update(Contract contract);
+
 }

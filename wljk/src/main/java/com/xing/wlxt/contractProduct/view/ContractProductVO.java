@@ -17,7 +17,7 @@ public class ContractProductVO implements Serializable{
 	 */
 	private static final long serialVersionUID = -1154381400030107887L;
 	/**合同下货物id*/
-	private String contractProductID; 
+	private String id; 
 	/**生产厂家ID*/
 	private Factory factoryID;
 	/**货物所属的购销合同*/
@@ -43,7 +43,7 @@ public class ContractProductVO implements Serializable{
 	/**箱数*/
 	private String boxNum;
 	/**包装单位*/
-	private String packingNuit;
+	private String packingUnit;
 	/**单价*/
 	private Double price;
 	/**总金额*/
@@ -57,12 +57,12 @@ public class ContractProductVO implements Serializable{
 	 * */
 	private String exts;
 	/**排序号*/
-	private Integer orderNO;
-	public String getContractProductID() {
-		return contractProductID;
+	private Integer orderNo;
+	public String getId() {
+		return id;
 	}
-	public void setContractProductID(String contractProductID) {
-		this.contractProductID = contractProductID;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public Factory getFactoryID() {
 		return factoryID;
@@ -130,11 +130,11 @@ public class ContractProductVO implements Serializable{
 	public void setBoxNum(String boxNum) {
 		this.boxNum = boxNum;
 	}
-	public String getPackingNuit() {
-		return packingNuit;
+	public String getPackingUnit() {
+		return packingUnit;
 	}
-	public void setPackingNuit(String packingNuit) {
-		this.packingNuit = packingNuit;
+	public void setPackingUnit(String packingUnit) {
+		this.packingUnit = packingUnit;
 	}
 	public Double getPrice() {
 		return price;
@@ -160,11 +160,11 @@ public class ContractProductVO implements Serializable{
 	public void setExts(String exts) {
 		this.exts = exts;
 	}
-	public Integer getOrderNO() {
-		return orderNO;
+	public Integer getOrderNo() {
+		return orderNo;
 	}
-	public void setOrderNO(Integer orderNO) {
-		this.orderNO = orderNO;
+	public void setOrderNo(Integer orderNo) {
+		this.orderNo = orderNo;
 	}
 	
 }

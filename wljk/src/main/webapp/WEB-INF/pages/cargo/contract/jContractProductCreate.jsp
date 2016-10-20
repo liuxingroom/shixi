@@ -6,14 +6,15 @@
     <script type="text/javascript">
     	//设置冗余的生产厂家名称
     	function setFactoryName(val){
-    		var ele = document.getElementById("factoryName");
+    		var ele = document.getElementById("factoryNa");
     		ele.value = val;
     	}
     </script>
 </head>
 <body>
 <form method="post">
-	<input type="text" name="contractId" value="${contractId}"/>
+	<!-- 新增的获取所属的购销合同的id -->
+	<input type="hidden" name="contractID" value="${contractId}"/>
 
 <div id="menubar">
 <div id="middleMenubar">
@@ -46,10 +47,10 @@
 	            	<select name="factoryId" onchange="setFactoryName(this.options[this.selectedIndex].text);">
 		            	<option value="">--请选择--</option>
 	            		<c:forEach items="${factoryList}" var="f">
-	            			<option value="${f.id}">${f.factoryName}</option>
+	            			<option value="${f.id}">${f.factoryNA}</option>
 	            		</c:forEach>
 	            	</select>
-	            	<input type="hidden" id="factoryName" name="factoryName" value=""/>
+	            	<input type="hidden" id="factoryNa" name="factoryNa" value=""/>
 	            </td>
 	            <td class="columnTitle_mustbe">货号：</td>
 	            <td class="tableContent"><input type="text" name="productNo"/></td>
@@ -60,7 +61,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">数量：</td>
-	            <td class="tableContent"><input type="text" name="cnumber"/></td>
+	            <td class="tableContent"><input type="text" name="cNumber"/></td>
 	            <td class="columnTitle_mustbe">包装单位：</td>
 	            <td class="tableContent"><input type="text" name="packingUnit"/></td>
 	        </tr>
@@ -118,9 +119,9 @@
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
-		<td>${o.factoryName}</td>
+		<td>${o.factoryNa}</td>
 		<td>${o.productNo}</td>
-		<td>${o.cnumber}</td>
+		<td>${o.cNumber}</td>
 		<td>${o.packingUnit}</td>
 		<td>${o.loadingRate}</td>
 		<td>${o.boxNum}</td>
@@ -128,7 +129,7 @@
 		<td>${o.amount}</td>
 		<td>
 			<a href="toupdate.action?id=${o.id}">[修改]</a>
-			<a href="deleteById.action?id=${o.id}&contractId=${o.contractId}">[删除]</a>
+			<a href="deleteById.action?id=${o.id}&contractId=${o.contractID}">[删除]</a>
 			<a href="${ctx}/cargo/extcproduct/tocreate.action?contractProductId=${o.id}" title="">[附件]</a>
 		</td>
 	</tr>
