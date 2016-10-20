@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.xing.wlxt.base.controller.BaseController;
 import com.xing.wlxt.contract.entity.Contract;
 import com.xing.wlxt.contract.service.ContractService;
+import com.xing.wlxt.contract.view.ContractVO;
 
 @Controller
 @RequestMapping("/cargo/contract")
@@ -30,6 +31,16 @@ public class ContractController extends BaseController{
 		List<Contract> dataList=contractService.find();
 		model.addAttribute("dataList", dataList);
 		return "/cargo/contract/jContractList";
+	}
+	
+	/**
+	 * 查看购销合同的详细信息（包含购销合同下的货物，和附件信息）
+	 */
+	@RequestMapping("/toview.action")
+	public String toview(String id,Model model){
+		ContractVO obj=contractService.view(id);
+		model.addAttribute("obj", obj);
+		return "/cargo/contract/jContractView";
 	}
 	
 	/**
@@ -62,6 +73,24 @@ public class ContractController extends BaseController{
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("id")String [] ids){
 		contractService.delete(ids);
+		return "redirect:/cargo/contract/list.action";
+	}
+	
+	/**
+	 * 上报购销合同
+	 */
+	@RequestMapping("/submit.action")
+	public String submit(@RequestParam("id")String [] ids){
+		contractService.submit(ids);
+		return "redirect:/cargo/contract/list.action";
+	}
+	
+	/**
+	 * 取消购销合同
+	 */
+	@RequestMapping("/cancel.action")
+	public String cancel(@RequestParam("id")String [] ids){
+		contractService.cancel(ids);
 		return "redirect:/cargo/contract/list.action";
 	}
 }

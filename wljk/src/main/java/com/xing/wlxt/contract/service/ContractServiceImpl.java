@@ -1,6 +1,8 @@
 package com.xing.wlxt.contract.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.xing.wlxt.contract.dao.ContractMapper;
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.view.ContractVO;
 import com.xing.wlxt.contractExtProduct.dao.ContractExtProductMapper;
 import com.xing.wlxt.contractProduct.dao.ContractProductMapper;
 
@@ -41,5 +44,28 @@ public class ContractServiceImpl implements ContractService{
 		contractProductMapper.delete(ids);       //删除购销合同下的货物信息
 		contractMapper.delete(ids);              //删除购销合同
 	}
+
+	@Override
+	public void submit(String[] ids) {
+		Map map=new HashMap();
+		map.put("state",1);                     //已上报
+		map.put("ids", ids);
+		contractMapper.updateState(map);
+	}
+
+	@Override
+	public void cancel(String[] ids) {
+		Map map=new HashMap();
+		map.put("state", 0);                       //草稿
+		map.put("ids", ids);
+		contractMapper.updateState(map);
+	}
+
+	@Override
+	public ContractVO view(String id) {
+		ContractVO obj=contractMapper.view(id);
+		return obj;
+	}
+	
 	
 }

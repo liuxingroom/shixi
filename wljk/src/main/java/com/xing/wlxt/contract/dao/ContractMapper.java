@@ -1,11 +1,13 @@
 package com.xing.wlxt.contract.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.view.ContractVO;
 
 @Repository
 public interface ContractMapper {
@@ -28,5 +30,18 @@ public interface ContractMapper {
 	 * @param ids
 	 */
 	public void delete(@Param("ids")String[] ids);
+
+	/**
+	 * 更新购销合同上报状态
+	 * @param map
+	 */
+	public void updateState(Map map);
+
+	/**
+	 * 获取购销合同的详细信息（包括购销合同下的货物和附件信息）
+	 * @param id
+	 * @return
+	 */
+	public ContractVO view(String id);
 
 }

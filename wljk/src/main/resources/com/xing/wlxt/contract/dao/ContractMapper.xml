@@ -90,4 +90,17 @@
 			#{id}
 		</foreach>
 	</delete>
+	
+	<!-- 更新购销合同的上报状态 -->
+	<update id="updateState" parameterType="map">
+		update CONTRACT_C set STATE=#{state} where contract_id 
+		<foreach collection="ids" open="in(" close=")" separator="," item="id">
+			#{id}
+		</foreach>
+	</update>
+	
+	<!-- 获取购销合同的详细信息（包括货物信息，和附件信息） -->
+	<select id="view" parameterType="String" resultMap="">
+		
+	</select>
 </mapper>

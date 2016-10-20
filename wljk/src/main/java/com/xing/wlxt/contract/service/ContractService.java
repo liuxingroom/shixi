@@ -3,6 +3,7 @@ package com.xing.wlxt.contract.service;
 import java.util.List;
 
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.view.ContractVO;
 
 public interface ContractService {
 
@@ -24,5 +25,23 @@ public interface ContractService {
 	 * @param ids
 	 */
 	public void delete(String[] ids);
+
+	/**
+	 * 上报购销合同
+	 * @param ids
+	 */
+	public void submit(String[] ids);
+	
+	/**
+	 * 取消已上报的购销合同
+	 */
+	public void cancel(String [] ids);
+
+	/**
+	 * 查看购销合同的详细信息（包括购销合同下的货物和附件信息）
+	 * @param id
+	 * @return
+	 */
+	public ContractVO view(String id);
 
 }
