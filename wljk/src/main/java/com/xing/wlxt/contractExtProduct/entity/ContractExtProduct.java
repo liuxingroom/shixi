@@ -25,9 +25,9 @@ public class ContractExtProduct implements Serializable{
 	 * */
 	private String factoryNA;
 	/**类型*/
-	private Integer cType;
+	private Integer ctype;
 	/**货号*/
-	private String productNO;
+	private String productNo;
 	/**货物照片*/
 	private String productImage;
 	/**货物描述*/
@@ -35,7 +35,7 @@ public class ContractExtProduct implements Serializable{
 	/**数量*/
 	private Integer cNumber;
 	/**包装单位*/
-	private String packingNuit;
+	private String packingUnit;
 	/**单价*/
 	private Double price;
 	/**总金额*/
@@ -68,17 +68,17 @@ public class ContractExtProduct implements Serializable{
 	public void setFactoryNA(String factoryNA) {
 		this.factoryNA = factoryNA;
 	}
-	public Integer getcType() {
-		return cType;
+	public Integer getCtype() {
+		return ctype;
 	}
-	public void setcType(Integer cType) {
-		this.cType = cType;
+	public void setCtype(Integer ctype) {
+		this.ctype = ctype;
 	}
-	public String getProductNO() {
-		return productNO;
+	public String getProductNo() {
+		return productNo;
 	}
-	public void setProductNO(String productNO) {
-		this.productNO = productNO;
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 	public String getProductImage() {
 		return productImage;
@@ -98,11 +98,11 @@ public class ContractExtProduct implements Serializable{
 	public void setcNumber(Integer cNumber) {
 		this.cNumber = cNumber;
 	}
-	public String getPackingNuit() {
-		return packingNuit;
+	public String getPackingUnit() {
+		return packingUnit;
 	}
-	public void setPackingNuit(String packingNuit) {
-		this.packingNuit = packingNuit;
+	public void setPackingUnit(String packingUnit) {
+		this.packingUnit = packingUnit;
 	}
 	public Double getPrice() {
 		return price;

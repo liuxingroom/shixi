@@ -3,6 +3,23 @@
 
 <mapper namespace="com.xing.wlxt.contractExtProduct.dao.ContractExtProductMapper">
    
+   <resultMap type="com.xing.wlxt.contractExtProduct.entity.ContractExtProduct" id="ContractExtProductRM">
+   	    <id property="id" column="EXT_CPRODUCT_ID" jdbcType="VARCHAR"/>
+   	    <result property="factoryID" column="FACTORY_ID" jdbcType="VARCHAR"/>
+   	    <result property="contractProductID" column="CONTRACT_PRODUCT_ID" jdbcType="VARCHAR"/>
+		<result property="factoryNA" column="FACTORY_NA" jdbcType="INTEGER"/>
+		<result property="ctype" column="CTYPE" jdbcType="INTEGER"/>
+		<result property="productNo" column="EXT_PRODUCT_NO" jdbcType="VARCHAR"/>
+		<result property="productImage" column="EXT_PRODUCT_IMAGE" jdbcType="VARCHAR"/>
+		<result property="productDesc" column="EXT_PRODUCT_DESC" jdbcType="VARCHAR"/>
+		<result property="cNumber" column="EXT_CNUMBER" jdbcType="INTEGER"/>
+		<result property="packingUnit" column="EXT_PACKING_UNIT" jdbcType="VARCHAR"/>
+		<result property="price" column="EXT_PRICE" jdbcType="DOUBLE"/>
+		<result property="amount" column="EXT_AMOUNT" jdbcType="DOUBLE"/>
+		<result property="productRequest" column="PRODUCT_REQUEST" jdbcType="VARCHAR"/>
+		<result property="orderNo" column="EXT_ORDER_NO" jdbcType="INTEGER"/>
+   	
+   </resultMap>
    
    <!-- 根据购销合同的id来删除附件信息 -->
    <delete id="delete">
@@ -23,4 +40,10 @@
    			#{id}
    		</foreach>
    </delete>
+   
+   
+   <!-- 根据货物id来获取该货物下的附件集合 -->
+   <select id="findExtByProductId" parameterType="String" resultMap="ContractExtProductRM">
+   		select * from ext_cproduct_c where contract_product_id=#{contractProductID}
+   </select>
 </mapper>

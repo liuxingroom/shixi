@@ -1,7 +1,11 @@
 package com.xing.wlxt.contractExtProduct.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.xing.wlxt.contractExtProduct.entity.ContractExtProduct;
 
 @Repository
 public interface ContractExtProductMapper {
@@ -17,5 +21,12 @@ public interface ContractExtProductMapper {
 	 * @param ids
 	 */
 	public void deleteExtByContractProductId(@Param("ids")String[] ids);
+
+	/**
+	 * 根据货物id来获取该货物下的附件信息
+	 * @param contractProductID
+	 * @return
+	 */
+	public List<ContractExtProduct> findExtByProductId(String contractProductID);
 
 }
