@@ -6,10 +6,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.xing.wlxt.contractExtProduct.dao.ContractExtProductMapper;
 import com.xing.wlxt.contractProduct.dao.ContractProductMapper;
 import com.xing.wlxt.contractProduct.entity.ContractProduct;
+import com.xing.wlxt.utils.UtilFuns;
 import com.xing.wlxt.utils.WLXTUtils;
 
 @Service
@@ -32,6 +34,11 @@ public class ContractProductServiceImpl implements ContractProductService{
 	@Override
 	public void insert(ContractProduct contractProduct) {
 		contractProduct.setId(WLXTUtils.createPrimary());
+		//如果货物中数量和单价的字段如果不为空    就计算货物总金额
+		if(UtilFuns.isNotEmpty(contractProduct.getPrice()) && UtilFuns.isNotEmpty(contractProduct.getcNumber())){
+			//设置货物总金额
+			contractProduct.setAmount(contractProduct.getPrice()*contractProduct.getcNumber());
+		}
 		contractProductMapper.insert(contractProduct);
 	}
 

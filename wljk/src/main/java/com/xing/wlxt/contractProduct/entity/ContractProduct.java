@@ -37,7 +37,7 @@ public class ContractProduct implements Serializable{
 	private String packingUnit;
 	/**单价*/
 	private Double price;
-	/**总金额*/
+	/**总金额 （冗余字段   在新增货物信息时进行计算     数量*单价）*/
 	private Double amount;
 	/**是否出货完毕
 	 * 0未完成1完成
