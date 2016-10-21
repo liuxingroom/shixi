@@ -73,5 +73,30 @@ public class ContractProductController {
 		return "/cargo/contract/jContractProductUpdate";
 	}
 	
+	/**
+	 * 更新货物信息
+	 */
+	@RequestMapping("/update.action")
+	public String update(ContractProduct contractProduct,Model model){
+		//根据货物id来更新货物信息
+		contractProductService.update(contractProduct);
+		
+		//传递购销合同的id信息
+		model.addAttribute("contractId", contractProduct.getContractID());
+		return "redirect:/cargo/contractproduct/tocreate.action";
+	}
+	
+	/**
+	 * 根据货物的id来删除货物信息
+	 * @return
+	 */
+	@RequestMapping("/deleteById.action")
+	public String deleteById(String id, String contractId, Model model){
+		//根据id来删除货物信息
+		contractProductService.deleteById(id);
+		//传递购销合同的id
+		model.addAttribute("contractId", contractId);
+		return "redirect:/cargo/contractproduct/tocreate.action";
+	}
 	
 }

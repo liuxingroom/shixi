@@ -75,7 +75,7 @@
 	            <td class="columnTitle_mustbe">单价：</td>
 	            <td class="tableContent"><input type="text" name="price" value="${obj.price}"/></td>
 	            <td class="columnTitle_mustbe">排序号：</td>
-	            <td class="tableContent"><input type="text" name="orderNo" value="${obj.orderNO}"/></td>
+	            <td class="tableContent"><input type="text" name="orderNO" value="${obj.orderNO}"/></td>
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">货物描述：</td>

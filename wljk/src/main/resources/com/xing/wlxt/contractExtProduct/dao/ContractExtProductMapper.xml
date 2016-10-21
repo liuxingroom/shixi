@@ -15,4 +15,12 @@
        		</foreach>
        )
    </delete>
+   
+   <!-- 根据货物id来删除该货物下的附件信息 -->
+   <delete id="deleteExtByContractProductId" >
+   		delete from ext_cproduct_c where contract_product_id in 
+   		<foreach collection="ids" open="(" close=")" item="id" separator=",">
+   			#{id}
+   		</foreach>
+   </delete>
 </mapper>

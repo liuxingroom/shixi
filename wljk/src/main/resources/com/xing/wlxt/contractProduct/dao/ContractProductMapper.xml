@@ -32,6 +32,15 @@
        	   </foreach>
 	</delete>
 	
+	<!-- 根据货物id来删除货物信息 -->
+	<delete id="deleteById">
+		delete from contract_product_c where contract_product_id in 
+		<foreach collection="ids" open="(" close=")" separator="," item="id">
+			#{id}
+		</foreach>
+	</delete>
+	
+	
 	<!-- 通过购销合同id获取该购销合同下的货物信息 -->
 	<select id="findContractProductByContractId" parameterType="String" resultMap="contractProductRM">
 		select * from contract_product_c where CONTRACT_ID=#{contractId}
@@ -69,4 +78,30 @@
 	<select id="findContractProductById" parameterType="String" resultMap="contractProductRM">
 		select * from contract_product_c where CONTRACT_PRODUCT_ID=#{id}
 	</select>
+	
+	<!-- 更新货物信息 -->
+	<update id="update" parameterType="com.xing.wlxt.contractProduct.entity.ContractProduct">
+		update contract_product_c 
+		<set>
+			<trim suffixOverrides=",">
+				<if test="factoryID !=null">FACTORY_ID=#{factoryID},</if>
+				<if test="contractID !=null">CONTRACT_ID=#{contractID},</if>
+				<if test="factoryNa !=null">FACTORY_NA=#{factoryNa},</if>
+				<if test="productNo !=null">PRODUCT_NO=#{productNo},</if>
+				<if test="productImage !=null">PRODUCT_IMAGE=#{productImage},</if>
+				<if test="productDesc !=null">PRODUCT_DESC=#{productDesc},</if>
+				<if test="cNumber !=null">CNUMBER=#{cNumber},</if>
+				<if test="outNumber !=null">OUT_NUMBER=#{outNumber},</if>
+				<if test="loadingRate !=null">LOADING_RATE=#{loadingRate},</if>
+				<if test="boxNum !=null">BOX_NUM=#{boxNum},</if>
+				<if test="packingUnit !=null">PACKING_UNIT=#{packingUnit},</if>
+				<if test="price !=null">PRICE=#{price},</if>
+				<if test="amount !=null">AMOUNT=#{amount},</if>
+				<if test="finished !=null">FINISHED=#{finished},</if>
+				<if test="exts !=null">EXTS=#{exts},</if>
+				<if test="orderNO !=null">ORDER_NO=#{orderNO},</if>
+			</trim>
+		</set>
+		where CONTRACT_PRODUCT_ID=#{id}
+	</update>
 </mapper>

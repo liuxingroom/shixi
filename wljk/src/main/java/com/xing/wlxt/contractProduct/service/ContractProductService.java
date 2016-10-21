@@ -26,4 +26,16 @@ public interface ContractProductService {
 	 */
 	ContractProduct findContractProductById(String id);
 	
+	/**
+	 * 更新货物信息
+	 * @param contractProduct
+	 */
+	public void update(ContractProduct contractProduct);
+
+	/**
+	 * 根据货物id来删除货物信息
+	 * @param id
+	 */
+	public void deleteById(String id);
+	
 }

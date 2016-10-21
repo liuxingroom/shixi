@@ -14,7 +14,7 @@
 <body>
 <form method="post">
 	<!-- 新增的获取所属的购销合同的id -->
-	<input type="hidden" name="contractID" value="${contractId}"/>
+	<input type="text" name="contractID" value="${contractId}"/>
 
 <div id="menubar">
 <div id="middleMenubar">
@@ -44,7 +44,7 @@
 	        <tr>
 	            <td class="columnTitle_mustbe">厂家名称：</td>
 	            <td class="tableContent">
-	            	<select name="factoryId" onchange="setFactoryName(this.options[this.selectedIndex].text);">
+	            	<select name="factoryID" onchange="setFactoryName(this.options[this.selectedIndex].text);">
 		            	<option value="">--请选择--</option>
 	            		<c:forEach items="${factoryList}" var="f">
 	            			<option value="${f.id}">${f.factoryNA}</option>

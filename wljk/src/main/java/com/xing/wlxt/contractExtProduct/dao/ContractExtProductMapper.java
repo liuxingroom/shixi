@@ -12,4 +12,10 @@ public interface ContractExtProductMapper {
 	 */
 	public void delete(@Param("ids")String[] ids);
 
+	/**
+	 * 根据货物id 来删除附件信息
+	 * @param ids
+	 */
+	public void deleteExtByContractProductId(@Param("ids")String[] ids);
+
 }
