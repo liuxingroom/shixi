@@ -29,4 +29,10 @@ public interface ContractExtProductMapper {
 	 */
 	public List<ContractExtProduct> findExtByProductId(String contractProductID);
 
+	/**
+	 * 新增附件信息
+	 * @param extProduct
+	 */
+	public void insert(ContractExtProduct extProduct);
+
 }

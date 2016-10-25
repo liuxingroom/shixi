@@ -7,7 +7,7 @@
    	    <id property="id" column="EXT_CPRODUCT_ID" jdbcType="VARCHAR"/>
    	    <result property="factoryID" column="FACTORY_ID" jdbcType="VARCHAR"/>
    	    <result property="contractProductID" column="CONTRACT_PRODUCT_ID" jdbcType="VARCHAR"/>
-		<result property="factoryNA" column="FACTORY_NA" jdbcType="INTEGER"/>
+		<result property="factoryNA" column="FACTORY_NA" jdbcType="VARCHAR"/>
 		<result property="ctype" column="CTYPE" jdbcType="INTEGER"/>
 		<result property="productNo" column="EXT_PRODUCT_NO" jdbcType="VARCHAR"/>
 		<result property="productImage" column="EXT_PRODUCT_IMAGE" jdbcType="VARCHAR"/>
@@ -20,6 +20,11 @@
 		<result property="orderNo" column="EXT_ORDER_NO" jdbcType="INTEGER"/>
    	
    </resultMap>
+   
+   <sql id="ContractExtProductSql">
+   		EXT_CPRODUCT_ID,FACTORY_ID,CONTRACT_PRODUCT_ID,FACTORY_NA,CTYPE,EXT_PRODUCT_NO,
+   		EXT_PRODUCT_IMAGE,EXT_PRODUCT_DESC,EXT_CNUMBER,EXT_PACKING_UNIT,EXT_PRICE,EXT_AMOUNT,PRODUCT_REQUEST,EXT_ORDER_NO
+   </sql>
    
    <!-- 根据购销合同的id来删除附件信息 -->
    <delete id="delete">
@@ -46,4 +51,29 @@
    <select id="findExtByProductId" parameterType="String" resultMap="ContractExtProductRM">
    		select * from ext_cproduct_c where contract_product_id=#{contractProductID}
    </select>
+	
+	<!-- 新增附件信息 -->
+   <insert id="insert" parameterType="com.xing.wlxt.contractExtProduct.entity.ContractExtProduct">
+   		insert into 
+   		ext_cproduct_c
+   		(EXT_CPRODUCT_ID,FACTORY_ID,CONTRACT_PRODUCT_ID,FACTORY_NA,CTYPE,EXT_PRODUCT_NO,
+   		EXT_PRODUCT_IMAGE,EXT_PRODUCT_DESC,EXT_CNUMBER,EXT_PACKING_UNIT,EXT_PRICE,EXT_AMOUNT,PRODUCT_REQUEST,EXT_ORDER_NO)
+   		values
+   		(
+   			EXT_CPRODUCT_ID=#{id,jdbcType=VARCHAR},
+   			FACTORY_ID=#{factoryID,jdbcType=VARCHAR},
+   			CONTRACT_PRODUCT_ID=#{contractProductID,jdbcType=VARCHAR},
+   			FACTORY_NA=#{factoryNA,jdbcType=VARCHAR},
+   			CTYPE=#{ctype,jdbcType=INTEGER},
+   			EXT_PRODUCT_NO=#{productNo,jdbcType=VARCHAR},
+   			EXT_PRODUCT_IMAGE=#{productImage,jdbcType=VARCHAR},
+   			EXT_PRODUCT_DESC=#{productDesc,jdbcType=VARCHAR},
+   		    EXT_CNUMBER=#{cNumber,jdbcType=INTEGER},
+   			EXT_PACKING_UNIT=#{packingUnit,jdbcType=VARCHAR},
+   			EXT_PRICE=#{price,jdbcType=DOUBLE},
+   			EXT_AMOUNT=#{amount,jdbcType=DOUBLE},
+   			PRODUCT_REQUEST=#{productRequest,jdbcType=VARCHAR},
+   			EXT_ORDER_NO=#{orderNo,jdbcType=INTEGER}
+   		)
+   </insert>
 </mapper>

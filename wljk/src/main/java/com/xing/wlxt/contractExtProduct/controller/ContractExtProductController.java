@@ -1,3 +1,4 @@
+
 package com.xing.wlxt.contractExtProduct.controller;
 
 import java.util.List;
@@ -34,15 +35,27 @@ public class ContractExtProductController {
 	public String tocreate(String contractProductID,Model model){
 		model.addAttribute("contractProductID", contractProductID);    //传递货物id
 		
-		List<ContractExtProduct> dataList=contractExtProductService.findExtByProductId(contractProductID);                //获取货物下的附件信息
+		//获取货物下的附件信息
+		List<ContractExtProduct> dataList=contractExtProductService.findExtByProductId(contractProductID);                
 		model.addAttribute("dataList", dataList);
 		
 		List<Factory> factoryList=factoryService.findFactory();         //获取生产厂家信息
 		model.addAttribute("factoryList", factoryList);
-		
+		// TODO 
 	//	contractExtProductService.getCTypeList();              //准备分类下拉列表
 		
 		return "/cargo/contract/jExtCproductCreate";
+	}
+	
+	/**
+	 * 新增附件信息
+	 */
+	@RequestMapping("/insert.action")
+	public String insert(ContractExtProduct extProduct, Model model){
+		contractExtProductService.insert(extProduct);   //插入附件信息
+		
+		model.addAttribute("contractProductID", extProduct.getContractProductID());  //设置商品的id
+		return "redirect:/cargo/extcproduct/tocreate.action";
 	}
 
 }

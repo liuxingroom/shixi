@@ -13,7 +13,7 @@
 </head>
 <body>
 <form method="post">
-	<input type="text" name="contractProductId" value="${contractProductId}"/>
+	<input type="text" name="contractProductID" value="${contractProductID}"/>
 
 <div id="menubar">
 <div id="middleMenubar">
@@ -46,10 +46,10 @@
 	            	<select name="factoryId" onchange="setFactoryName(this.options[this.selectedIndex].text);">
 		            	<option value="">--请选择--</option>
 	            		<c:forEach items="${factoryList}" var="f">
-	            			<option value="${f.id}">${f.factoryName}</option>
+	            			<option value="${f.id}">${f.factoryNA}</option>
 	            		</c:forEach>
 	            	</select>
-	            	<input type="hidden" id="factoryName" name="factoryName" value=""/>
+	            	<input type="hidden" id="factoryName" name="factoryNA" value=""/>
 	            </td>
 	            <td class="columnTitle_mustbe">货号：</td>
 	            <td class="tableContent"><input type="text" name="productNo"/></td>
@@ -69,7 +69,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">数量：</td>
-	            <td class="tableContent"><input type="text" name="cnumber"/></td>
+	            <td class="tableContent"><input type="text" name="cNumber"/></td>
 	            <td class="columnTitle_mustbe">包装单位：</td>
 	            <td class="tableContent"><input type="text" name="packingUnit"/></td>
 	        </tr>
