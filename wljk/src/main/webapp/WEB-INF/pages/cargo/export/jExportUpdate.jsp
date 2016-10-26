@@ -106,7 +106,7 @@
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">信用证号：</td>
-	            <td class="tableContent"><input type="text" name="lcno" value="${obj.lcno}"/></td>
+	            <td class="tableContent"><input type="text" name="LCNO" value="${obj.LCNO}"/></td>
 	            <td class="columnTitle_mustbe">收货人及地址：</td>
 	            <td class="tableContent"><input type="text" name="consignee" value="${obj.consignee}"/></td>
 	        </tr>

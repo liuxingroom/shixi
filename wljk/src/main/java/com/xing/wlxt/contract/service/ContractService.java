@@ -3,15 +3,17 @@ package com.xing.wlxt.contract.service;
 import java.util.List;
 
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.search.ContractSearch;
 import com.xing.wlxt.contract.view.ContractVO;
 
 public interface ContractService {
 
 	/**
 	 * 获取购销合同的list集合
+	 * @param object 
 	 * @return
 	 */
-	List<Contract> find();
+	List<Contract> find(ContractSearch search);
 
 	/**
 	 * 根据购销合同id来获取购销合同的信息

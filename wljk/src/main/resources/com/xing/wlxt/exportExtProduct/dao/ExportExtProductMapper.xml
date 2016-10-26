@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xing.wlxt.exportExtProduct.dao.ExportExtProductMapper">
+   
+   
+   <!-- 根据报运id来删除报运下的附件信息 -->
+   <delete id="deleteByExportId">
+   		delete from EXT_EPRODUCT_C
+ 		where EXPORT_PRODUCT_ID in
+       (
+       	select export_product_id from export_product_c where export_id in
+       	<foreach collection="ids" open="(" close=")" separator="," item="id">
+       		#{id}
+       	</foreach>
+       )
+   </delete>
+</mapper>

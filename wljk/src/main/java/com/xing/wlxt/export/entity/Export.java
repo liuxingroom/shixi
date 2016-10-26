@@ -16,10 +16,15 @@ public class Export implements Serializable{
 	
 	/**报运id*/
 	private String  id;
+	/**报运表下的货物数*/
+	private String epnum;
+	/**报运表下的附件数*/
+	private String extnum;
+	
 	/**制单日期*/
 	private Date inputDate;
 	/**合同编号集合*/
-	private String contractIDS;
+	private String contractIds;
 	/**合同或确认书号*/
 	private String customerContract;
 	/**用证号L/C T/T*/
@@ -58,17 +63,30 @@ public class Export implements Serializable{
 	public void setId(String id) {
 		this.id =id;
 	}
+	
+	public String getEpnum() {
+		return epnum;
+	}
+	public void setEpnum(String epnum) {
+		this.epnum = epnum;
+	}
+	public String getExtnum() {
+		return extnum;
+	}
+	public void setExtnum(String extnum) {
+		this.extnum = extnum;
+	}
 	public Date getInputDate() {
 		return inputDate;
 	}
 	public void setInputDate(Date inputDate) {
 		this.inputDate = inputDate;
 	}
-	public String getContractIDS() {
-		return contractIDS;
+	public String getContractIds() {
+		return contractIds;
 	}
-	public void setContractIDS(String contractIDS) {
-		this.contractIDS = contractIDS;
+	public void setContractIds(String contractIds) {
+		this.contractIds = contractIds;
 	}
 	public String getCustomerContract() {
 		return customerContract;

@@ -86,7 +86,7 @@
 		附件数，货物数这两个虚拟字段是采用sql语句计算出来的（虚拟字段：在数据库中不存在该字段）
 		总金额也是通过sql语句计算出来的
 	 -->
-	<select id="find" resultMap="contractResultMap">
+	<select id="find" resultMap="contractResultMap" parameterType="com.xing.wlxt.contract.search.ContractSearch">
 		select (select count(*)
           from contract_product_c cp
          where cp.contract_id = c.contract_id) CPNUM,
@@ -125,6 +125,9 @@
        c.STATE,
        c.OUT_STATE
   from contract_c c
+  <where>
+  	<if test="state !=null">STATE=#{state}</if>
+  </where>
 	</select>
 	
 	<!-- 获取购销合同以及与购销合同相关的货物，附件，生产厂家的信息 -->

@@ -62,7 +62,7 @@
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
 		<td><a href="toview.action?id=${o.id}">${o.customerContract}</a></td>
-		<td>${o.lcno}</td>
+		<td>${o.LCNO}</td>
 		<td align="center">${o.epnum}/${o.extnum}</td>
 		<td>${o.consignee}</td>
 		<td>${o.shipmentPort}</td>

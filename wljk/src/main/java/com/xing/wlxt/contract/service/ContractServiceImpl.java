@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.xing.wlxt.contract.dao.ContractMapper;
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.search.ContractSearch;
 import com.xing.wlxt.contract.view.ContractVO;
 import com.xing.wlxt.contractExtProduct.dao.ContractExtProductMapper;
 import com.xing.wlxt.contractProduct.dao.ContractProductMapper;
@@ -28,8 +29,8 @@ public class ContractServiceImpl implements ContractService{
 	ContractExtProductMapper contractExtProductMapper;
 	
 	@Override
-	public List<Contract> find() {
-		List<Contract> dataList=contractMapper.find(null);
+	public List<Contract> find(ContractSearch search) {
+		List<Contract> dataList=contractMapper.find(search);
 		return dataList;
 	}
 

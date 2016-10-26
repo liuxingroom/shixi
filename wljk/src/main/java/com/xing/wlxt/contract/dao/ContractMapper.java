@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.xing.wlxt.contract.entity.Contract;
 import com.xing.wlxt.contract.search.ContractSearch;
 import com.xing.wlxt.contract.view.ContractVO;
+import com.xing.wlxt.export.entity.Export;
+import com.xing.wlxt.export.search.ExportSearch;
 
 @Repository
 public interface ContractMapper {
@@ -57,5 +59,12 @@ public interface ContractMapper {
 	 * @param contract
 	 */
 	public void update(Contract contract);
+
+	/**
+	 * 查询报运信息
+	 * @param search
+	 * @return
+	 */
+	public List<Export> find(ExportSearch search);
 
 }

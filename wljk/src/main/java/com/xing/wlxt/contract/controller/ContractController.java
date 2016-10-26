@@ -28,7 +28,7 @@ public class ContractController extends BaseController{
 	 */
 	@RequestMapping("/list.action")
 	public String list(Model model){
-		List<Contract> dataList=contractService.find();
+		List<Contract> dataList=contractService.find(null);
 		model.addAttribute("dataList", dataList);
 		return "/cargo/contract/jContractList";
 	}
