@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.search.ContractSearch;
 import com.xing.wlxt.contract.view.ContractVO;
 
 @Repository
@@ -14,9 +15,10 @@ public interface ContractMapper {
 	
 	/**
 	 * 获取购销合同的list集合
+	 * @param search 
 	 * @return
 	 */
-	public List<Contract> find();
+	public List<Contract> find(ContractSearch search);
 
 	/**
 	 * 根据购销合同id来获取购销合同的信息

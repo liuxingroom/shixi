@@ -29,7 +29,7 @@ public class ContractServiceImpl implements ContractService{
 	
 	@Override
 	public List<Contract> find() {
-		List<Contract> dataList=contractMapper.find();
+		List<Contract> dataList=contractMapper.find(null);
 		return dataList;
 	}
 
