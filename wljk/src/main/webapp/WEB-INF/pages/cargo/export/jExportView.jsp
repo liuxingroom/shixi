@@ -33,53 +33,43 @@
     <div>
 		<table class="commonTable" cellspacing="1">
 	        <tr>
-	            <td class="columnTitle">客户名称：</td>
-	            <td class="tableContent">${obj.customName}</td>
-	            <td class="columnTitle">收购方：</td>
-	            <td class="tableContent">${obj.offeror}</td>
+	            <td class="columnTitle_mustbe">合同或确认书号：</td>
+	            <td class="tableContent">${obj.customerContract}</td>
+	            <td class="columnTitle_mustbe">制单日期：</td>
+	            <td class="tableContent">
+					<input type="text" style="width:90px;" name="inputDate" value="<fmt:formatDate value="${obj.inputDate}" pattern="yyyy-MM-dd"/>"
+	             			onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
+				</td>
 	        </tr>
 	        <tr>
-	            <td class="columnTitle">合同号：</td>
-	            <td class="tableContent">${obj.contractNO}</td>
-	            <td class="columnTitle">打印版式：</td>
+	            <td class="columnTitle_mustbe">信用证号：</td>
+	            <td class="tableContent"><input type="text" name="LCNO" value="${obj.LCNO}"/></td>
+	            <td class="columnTitle_mustbe">收货人及地址：</td>
+	            <td class="tableContent"><input type="text" name="consignee" value="${obj.consignee}"/></td>
+	        </tr>
+	        <tr>
+	            <td class="columnTitle_mustbe">装运港：</td>
+	            <td class="tableContent"><input type="text" name="shipmentPort" value="${obj.shipmentPort}"/></td>
+	            <td class="columnTitle_mustbe">目的港：</td>
+	            <td class="tableContent"><input type="text" name="destinationPort" value="${obj.destinationPort}"/></td>
+	        </tr>
+	        <tr>
+	            <td class="columnTitle_mustbe">运输方式：</td>
 	            <td class="tableContentAuto">
-	            	<c:if test="${obj.printStyle=='2'}">两款</c:if>
-	            	<c:if test="${obj.printStyle=='1'}">一款</c:if>
+	            	<input type="radio" name="transportMode" value="SEA" class="input" <c:if test="${obj.transportMode=='SEA'}">checked</c:if>>SEA
+	            	<input type="radio" name="transportMode" value="AIR" class="input" <c:if test="${obj.transportMode=='AIR'}">checked</c:if>>AIR
+	            </td>
+	            <td class="columnTitle_mustbe">价格条件：</td>
+	            <td class="tableContentAuto">
+	            	<input type="radio" name="priceCondition" value="FOB" class="input" <c:if test="${obj.priceCondition=='FOB'}">checked</c:if>>FOB
+	            	<input type="radio" name="priceCondition" value="CIF" class="input" <c:if test="${obj.priceCondition=='CIF'}">checked</c:if>>CIF
 	            </td>
 	        </tr>
 	        <tr>
-	            <td class="columnTitle">签单日期：</td>
-	            <td class="tableContent"><fmt:formatDate value="${obj.signingDate}" pattern="yyyy-MM-dd"/></td>
-	            <td class="columnTitle">重要程度：</td>
-	            <td class="tableContentAuto">
-	            	<c:if test="${obj.importNum==3}">★★★</c:if>
-	            	<c:if test="${obj.importNum==2}">★★</c:if>
-	            	<c:if test="${obj.importNum==1}">★</c:if>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="columnTitle">交货期限：</td>
-	            <td class="tableContent"><fmt:formatDate value="${obj.deliveryPeriod}" pattern="yyyy-MM-dd"/></td>
-	            <td class="columnTitle">船期：</td>
-	            <td class="tableContent"><fmt:formatDate value="${obj.shipTime}" pattern="yyyy-MM-dd"/></td>
-	        </tr>
-	        <tr>
-	            <td class="columnTitle">贸易条款：</td>
-	            <td class="tableContent">${obj.tradeTerms}</td>
-	            <td class="columnTitle">验货员：</td>
-	            <td class="tableContent">${obj.inspector}</td>
-	        </tr>
-	        <tr>
-	            <td class="columnTitle">制单人：</td>
-	            <td class="tableContent">${obj.inputBy}</td>
-	            <td class="columnTitle">审单人：</td>
-	            <td class="tableContent">${obj.checkBy}</td>
-	        </tr>
-	        <tr>
-	            <td class="columnTitle">要求：</td>
-	            <td class="tableContent"><pre>${obj.crequest}</pre></td>
-	            <td class="columnTitle">说明：</td>
-	            <td class="tableContent"><pre>${obj.remark}</pre></td>
+	            <td class="columnTitle_mustbe">唛头：</td>
+	            <td class="tableContent"><textarea name="marks" style="height:120px;">${obj.marks}</textarea></td>
+	            <td class="columnTitle_mustbe">备注：</td>
+	            <td class="tableContent"><textarea name="remark" style="height:120px;">${obj.remark}</textarea></td>
 	        </tr>
 		</table>
 	</div>
@@ -90,7 +80,7 @@
   <div class="textbox-header">
   <div class="textbox-inner-header">
   <div class="textbox-title">
-    货物列表
+    报运货物列表
   </div> 
   </div>
   </div>
@@ -102,14 +92,14 @@
 	<thead>
 	<tr>
 		<td class="tableHeader">序号</td>
-		<td class="tableHeader">厂家名称</td>
 		<td class="tableHeader">货号</td>
 		<td class="tableHeader">数量</td>
-		<td class="tableHeader">包装单位</td>
-		<td class="tableHeader">装率</td>
-		<td class="tableHeader">箱数</td>
-		<td class="tableHeader">单价</td>
-		<td class="tableHeader">总金额</td>
+		<td class="tableHeader">毛重</td>
+		<td class="tableHeader">净重</td>
+		<td class="tableHeader">长</td>
+		<td class="tableHeader">宽</td>
+		<td class="tableHeader">出口单价</td>
+		<td class="tableHeader">含税</td>
 	</tr>
 	</thead>
 	<tbody class="tableBody" >
