@@ -39,5 +39,17 @@ public interface ExportService {
 	 * @param ids 报运单id的集合
 	 */
 	public void delete(String[] ids);
+
+	/**
+	 * 报运单上报
+	 * @param ids 
+	 */
+	public void submit(String[] ids);
+
+	/**
+	 * 报运单取消上报
+	 * @param ids 
+	 */
+	public void cancel(String[] ids);
 	
 }

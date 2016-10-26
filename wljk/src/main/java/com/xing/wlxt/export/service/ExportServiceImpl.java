@@ -65,4 +65,25 @@ public class ExportServiceImpl implements ExportService{
  		exportMapper.delete(ids);    //删除报运单信息
 	}
 
+	@Override
+	public void submit(String [] ids) {
+		for(String id:ids){
+			Export export=new Export();
+			export.setId(id);
+			export.setState(1);
+			exportMapper.update(export);
+		}
+		
+	}
+
+	@Override
+	public void cancel(String [] ids) {
+		for(String id:ids){
+			Export export=new Export();
+			export.setId(id);
+			export.setState(0);
+			exportMapper.update(export);
+		}
+	}
+
 }

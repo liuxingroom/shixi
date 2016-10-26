@@ -95,5 +95,22 @@ public class ExportController extends BaseController{
 		return "redirect:/cargo/export/list.action";
 	}
 	
+	/**
+	 * 上报报运单
+	 */
+	@RequestMapping("/submit.action")
+	public  String submit(@RequestParam("id")String [] ids){
+		exportService.submit(ids);   //报云单上报
+		
+		return "redirect:/cargo/export/list.action";
+	}
 	
+	/**
+	 * 取消上报报运单
+	 */
+	@RequestMapping("/cancel.action")
+	public String cancel(@RequestParam("id")String [] ids){
+		exportService.cancel(ids);
+		return "redirect:/cargo/export/list.action";
+	}
 }
