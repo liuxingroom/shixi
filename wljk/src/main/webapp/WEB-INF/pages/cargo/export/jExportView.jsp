@@ -104,29 +104,29 @@
 	</thead>
 	<tbody class="tableBody" >
 	
-	<c:forEach items="${obj.contractProduct}" var="cp" varStatus="status">
+	<c:forEach items="${obj.exportProducts}" var="cp" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td>${status.index+1}</td>
-		<td>${cp.factoryID.factoryNA}</td>
-		<td>${cp.productNo}</td>
-		<td>${cp.cNumber}</td>
-		<td>${cp.packingUnit}</td>
-		<td>${cp.loadingRate}</td>
-		<td>${cp.boxNum}</td>
-		<td>${cp.price}</td>
-		<td>${cp.amount}</td>
+		<td>${cp.exportProducts.productNo}</td>
+		<td>${cp.exportProducts.cnumber}</td>
+		<td>${cp.exportProducts.grossWeight}</td>
+		<td>${cp.exportProducts.netWight}</td>
+		<td>${cp.exportProducts.sizeLength}</td>
+		<td>${cp.exportProducts.sizeWidth}</td>
+		<td>${cp.exportProducts.exPrice}</td>
+		<td>${cp.exportProducts.tax}</td>
 	</tr>
 	<c:forEach items="${cp.contractExtProduct}" var="ext" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td><font color="blue">附件：${status.index+1}</font></td>
-		<td>${ext.factoryID.factoryNA}</td>
 		<td>${ext.productNo}</td>
 		<td>${ext.cNumber}</td>
-		<td>${ext.packingUnit}</td>
 		<td></td>
 		<td></td>
-		<td>${ext.price}</td>
-		<td>${ext.amount}</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
 	</tr>
 	</c:forEach>
 	</c:forEach>

@@ -19,9 +19,11 @@ public class ExportProduct implements Serializable{
 	/**生产厂家ID*/
 	private String factoryID;
 	/**厂家名称(冗余字段)*/
-	private String factoryNA;
+	private String factoryName;
+	/**产品名称*/
+	private String productName;
 	/**货号*/
-	private String factoryNO;
+	private String productNO;
 	/**包装单位*/
 	private String packingUnit;
 	/**数量(分次走货在此体现)*/
@@ -40,8 +42,6 @@ public class ExportProduct implements Serializable{
 	private Double sizeHeight;
 	/**出口单价（手填）*/
 	private Double exPrice;
-	/**单价*/
-	private Double price;
 	/**含税*/
 	private Double tax;
 	/**排序号*/
@@ -64,17 +64,12 @@ public class ExportProduct implements Serializable{
 	public void setFactoryID(String factoryID) {
 		this.factoryID = factoryID;
 	}
-	public String getFactoryNA() {
-		return factoryNA;
+	
+	public String getProductNO() {
+		return productNO;
 	}
-	public void setFactoryNA(String factoryNA) {
-		this.factoryNA = factoryNA;
-	}
-	public String getFactoryNO() {
-		return factoryNO;
-	}
-	public void setFactoryNO(String factoryNO) {
-		this.factoryNO = factoryNO;
+	public void setProductNO(String productNO) {
+		this.productNO = productNO;
 	}
 	public String getPackingUnit() {
 		return packingUnit;
@@ -130,12 +125,7 @@ public class ExportProduct implements Serializable{
 	public void setExPrice(Double exPrice) {
 		this.exPrice = exPrice;
 	}
-	public Double getPrice() {
-		return price;
-	}
-	public void setPrice(Double price) {
-		this.price = price;
-	}
+	
 	public Double getTax() {
 		return tax;
 	}
@@ -147,6 +137,18 @@ public class ExportProduct implements Serializable{
 	}
 	public void setOrderNo(Integer orderNo) {
 		this.orderNo = orderNo;
+	}
+	public String getFactoryName() {
+		return factoryName;
+	}
+	public void setFactoryName(String factoryName) {
+		this.factoryName = factoryName;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	
 	

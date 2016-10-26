@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.xing.wlxt.export.entity.Export;
 import com.xing.wlxt.exportExtProduct.entity.ExportExtProduct;
+import com.xing.wlxt.exportExtProduct.view.ExportExtProductVO;
 import com.xing.wlxt.factory.entity.Factory;
 
 /**
@@ -24,11 +25,13 @@ public class ExportProductVO implements Serializable{
 	/**生产厂家*/
 	private Factory factory;
 	/**所属该货物的附件*/
-	private List<ExportExtProduct> extProducts;
+	private List<ExportExtProductVO> extProducts;
 	/**厂家名称(冗余字段)*/
-	private String factoryNA;
+	private String factoryName;
+	/**产品名称*/
+	private String productName;
 	/**货号*/
-	private String factoryNO;
+	private String productNo;
 	/**包装单位*/
 	private String packingUnit;
 	/**数量(分次走货在此体现)*/
@@ -47,8 +50,6 @@ public class ExportProductVO implements Serializable{
 	private Double sizeHeight;
 	/**出口单价（手填）*/
 	private Double exPrice;
-	/**单价*/
-	private Double price;
 	/**含税*/
 	private Double tax;
 	/**排序号*/
@@ -72,23 +73,30 @@ public class ExportProductVO implements Serializable{
 	public void setFactory(Factory factory) {
 		this.factory = factory;
 	}
-	public List<ExportExtProduct> getExtProducts() {
+	public List<ExportExtProductVO> getExtProducts() {
 		return extProducts;
 	}
-	public void setExtProducts(List<ExportExtProduct> extProducts) {
+	public void setExtProducts(List<ExportExtProductVO> extProducts) {
 		this.extProducts = extProducts;
 	}
-	public String getFactoryNA() {
-		return factoryNA;
+	
+	public String getFactoryName() {
+		return factoryName;
 	}
-	public void setFactoryNA(String factoryNA) {
-		this.factoryNA = factoryNA;
+	public void setFactoryName(String factoryName) {
+		this.factoryName = factoryName;
 	}
-	public String getFactoryNO() {
-		return factoryNO;
+	public String getProductName() {
+		return productName;
 	}
-	public void setFactoryNO(String factoryNO) {
-		this.factoryNO = factoryNO;
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getProductNo() {
+		return productNo;
+	}
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 	public String getPackingUnit() {
 		return packingUnit;
@@ -143,12 +151,6 @@ public class ExportProductVO implements Serializable{
 	}
 	public void setExPrice(Double exPrice) {
 		this.exPrice = exPrice;
-	}
-	public Double getPrice() {
-		return price;
-	}
-	public void setPrice(Double price) {
-		this.price = price;
 	}
 	public Double getTax() {
 		return tax;

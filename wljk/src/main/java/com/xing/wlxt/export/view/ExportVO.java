@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.xing.wlxt.exportProduct.entity.ExportProduct;
+import com.xing.wlxt.exportProduct.view.ExportProductVO;
 
 /**
  * 出口报运单的相关信息
@@ -24,7 +25,7 @@ public class ExportVO implements Serializable{
 	/**报运表下的附件数*/
 	private String extnum;
 	/**报运下的货物信息*/
-	private List<ExportProduct> exportProducts;
+	private List<ExportProductVO> exportProducts;
 	
 	/**制单日期*/
 	private Date inputDate;
@@ -69,10 +70,10 @@ public class ExportVO implements Serializable{
 		this.id =id;
 	}
 	
-	public List<ExportProduct> getExportProducts() {
+	public List<ExportProductVO> getExportProducts() {
 		return exportProducts;
 	}
-	public void setExportProducts(List<ExportProduct> exportProducts) {
+	public void setExportProducts(List<ExportProductVO> exportProducts) {
 		this.exportProducts = exportProducts;
 	}
 	public String getEpnum() {
