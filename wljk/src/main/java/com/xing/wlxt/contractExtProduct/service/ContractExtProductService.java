@@ -19,4 +19,23 @@ public interface ContractExtProductService {
 	 */
 	public void insert(ContractExtProduct extProduct);
 
+	/**
+	 * 根据附件的id来获取附件的信息
+	 * @param id
+	 * @return
+	 */
+	public ContractExtProduct get(String id);
+
+	/**
+	 * 更新购销合同下所属货物的附件信息
+	 * @param extProduct
+	 */
+	public void update(ContractExtProduct extProduct);
+
+	/**
+	 * 根据附件id来删除附件信息
+	 * @param id
+	 */
+	public void deleteById(String id);
+
 }

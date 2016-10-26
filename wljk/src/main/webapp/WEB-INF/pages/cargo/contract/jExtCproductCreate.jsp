@@ -43,7 +43,7 @@
 	        <tr>
 	            <td class="columnTitle_mustbe">厂家名称：</td>
 	            <td class="tableContent">
-	            	<select name="factoryId" onchange="setFactoryName(this.options[this.selectedIndex].text);">
+	            	<select name="factoryID" onchange="setFactoryName(this.options[this.selectedIndex].text);">
 		            	<option value="">--请选择--</option>
 	            		<c:forEach items="${factoryList}" var="f">
 	            			<option value="${f.id}">${f.factoryNA}</option>
@@ -121,15 +121,15 @@
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
-		<td>${o.factoryName}</td>
+		<td>${o.factoryNA}</td>
 		<td>${o.productNo}</td>
-		<td>${o.cnumber}</td>
+		<td>${o.cNumber}</td>
 		<td>${o.packingUnit}</td>
 		<td>${o.price}</td>
 		<td>${o.amount}</td>
 		<td>
 			<a href="toupdate.action?id=${o.id}">[修改]</a>
-			<a href="deleteById.action?id=${o.id}&contractProductId=${o.contractProductId}">[删除]</a>
+			<a href="deleteById.action?id=${o.id}&contractProductID=${o.contractProductID}">[删除]</a>
 		</td>
 	</tr>
 	</c:forEach>

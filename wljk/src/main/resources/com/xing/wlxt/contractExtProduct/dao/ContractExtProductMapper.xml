@@ -9,21 +9,21 @@
    	    <result property="contractProductID" column="CONTRACT_PRODUCT_ID" jdbcType="VARCHAR"/>
 		<result property="factoryNA" column="FACTORY_NA" jdbcType="VARCHAR"/>
 		<result property="ctype" column="CTYPE" jdbcType="INTEGER"/>
-		<result property="productNo" column="EXT_PRODUCT_NO" jdbcType="VARCHAR"/>
-		<result property="productImage" column="EXT_PRODUCT_IMAGE" jdbcType="VARCHAR"/>
-		<result property="productDesc" column="EXT_PRODUCT_DESC" jdbcType="VARCHAR"/>
-		<result property="cNumber" column="EXT_CNUMBER" jdbcType="INTEGER"/>
-		<result property="packingUnit" column="EXT_PACKING_UNIT" jdbcType="VARCHAR"/>
-		<result property="price" column="EXT_PRICE" jdbcType="DOUBLE"/>
-		<result property="amount" column="EXT_AMOUNT" jdbcType="DOUBLE"/>
+		<result property="productNo" column="PRODUCT_NO" jdbcType="VARCHAR"/>
+		<result property="productImage" column="PRODUCT_IMAGE" jdbcType="VARCHAR"/>
+		<result property="productDesc" column="PRODUCT_DESC" jdbcType="VARCHAR"/>
+		<result property="cNumber" column="CNUMBER" jdbcType="INTEGER"/>
+		<result property="packingUnit" column="PACKING_UNIT" jdbcType="VARCHAR"/>
+		<result property="price" column="PRICE" jdbcType="DOUBLE"/>
+		<result property="amount" column="AMOUNT" jdbcType="DOUBLE"/>
 		<result property="productRequest" column="PRODUCT_REQUEST" jdbcType="VARCHAR"/>
-		<result property="orderNo" column="EXT_ORDER_NO" jdbcType="INTEGER"/>
+		<result property="orderNo" column="ORDER_NO" jdbcType="INTEGER"/>
    	
    </resultMap>
    
    <sql id="ContractExtProductSql">
-   		EXT_CPRODUCT_ID,FACTORY_ID,CONTRACT_PRODUCT_ID,FACTORY_NA,CTYPE,EXT_PRODUCT_NO,
-   		EXT_PRODUCT_IMAGE,EXT_PRODUCT_DESC,EXT_CNUMBER,EXT_PACKING_UNIT,EXT_PRICE,EXT_AMOUNT,PRODUCT_REQUEST,EXT_ORDER_NO
+   		EXT_CPRODUCT_ID,FACTORY_ID,CONTRACT_PRODUCT_ID,FACTORY_NA,CTYPE,PRODUCT_NO,
+   		PRODUCT_IMAGE,PRODUCT_DESC,CNUMBER,PACKING_UNIT,PRICE,AMOUNT,PRODUCT_REQUEST,ORDER_NO
    </sql>
    
    <!-- 根据购销合同的id来删除附件信息 -->
@@ -56,24 +56,57 @@
    <insert id="insert" parameterType="com.xing.wlxt.contractExtProduct.entity.ContractExtProduct">
    		insert into 
    		ext_cproduct_c
-   		(EXT_CPRODUCT_ID,FACTORY_ID,CONTRACT_PRODUCT_ID,FACTORY_NA,CTYPE,EXT_PRODUCT_NO,
-   		EXT_PRODUCT_IMAGE,EXT_PRODUCT_DESC,EXT_CNUMBER,EXT_PACKING_UNIT,EXT_PRICE,EXT_AMOUNT,PRODUCT_REQUEST,EXT_ORDER_NO)
+   		(EXT_CPRODUCT_ID,FACTORY_ID,CONTRACT_PRODUCT_ID,FACTORY_NA,CTYPE,PRODUCT_NO,
+   		PRODUCT_IMAGE,PRODUCT_DESC,CNUMBER,PACKING_UNIT,PRICE,AMOUNT,PRODUCT_REQUEST,ORDER_NO)
    		values
    		(
-   			EXT_CPRODUCT_ID=#{id,jdbcType=VARCHAR},
-   			FACTORY_ID=#{factoryID,jdbcType=VARCHAR},
-   			CONTRACT_PRODUCT_ID=#{contractProductID,jdbcType=VARCHAR},
-   			FACTORY_NA=#{factoryNA,jdbcType=VARCHAR},
-   			CTYPE=#{ctype,jdbcType=INTEGER},
-   			EXT_PRODUCT_NO=#{productNo,jdbcType=VARCHAR},
-   			EXT_PRODUCT_IMAGE=#{productImage,jdbcType=VARCHAR},
-   			EXT_PRODUCT_DESC=#{productDesc,jdbcType=VARCHAR},
-   		    EXT_CNUMBER=#{cNumber,jdbcType=INTEGER},
-   			EXT_PACKING_UNIT=#{packingUnit,jdbcType=VARCHAR},
-   			EXT_PRICE=#{price,jdbcType=DOUBLE},
-   			EXT_AMOUNT=#{amount,jdbcType=DOUBLE},
-   			PRODUCT_REQUEST=#{productRequest,jdbcType=VARCHAR},
-   			EXT_ORDER_NO=#{orderNo,jdbcType=INTEGER}
+   			#{id,jdbcType=VARCHAR},
+   			#{factoryID,jdbcType=VARCHAR},
+   			#{contractProductID,jdbcType=VARCHAR},
+   			#{factoryNA,jdbcType=VARCHAR},
+   			#{ctype,jdbcType=INTEGER},
+   			#{productNo,jdbcType=VARCHAR},
+   			#{productImage,jdbcType=VARCHAR},
+   			#{productDesc,jdbcType=VARCHAR},
+   		    #{cNumber,jdbcType=INTEGER},
+   			#{packingUnit,jdbcType=VARCHAR},
+   			#{price,jdbcType=DOUBLE},
+   			#{amount,jdbcType=DOUBLE},
+   			#{productRequest,jdbcType=VARCHAR},
+   			#{orderNo,jdbcType=INTEGER}
    		)
    </insert>
+   
+   <!-- 根据附件的id来获取附件的信息 -->
+   <select id="get" resultMap="ContractExtProductRM">
+   		select * from ext_cproduct_c where EXT_CPRODUCT_ID=#{id}
+   </select>
+   
+   <!-- 更新购销合同下货物所属的附件信息 -->
+   <update id="update" parameterType="com.xing.wlxt.contractExtProduct.entity.ContractExtProduct">
+   		update ext_cproduct_c 
+   		<trim suffixOverrides=",">
+   			<set>
+   				<if test="factoryID !=null">FACTORY_ID=#{factoryID},</if>
+   				<if test="contractProductID !=null">CONTRACT_PRODUCT_ID=#{contractProductID},</if>
+   				<if test="factoryNA !=null">FACTORY_NA=#{factoryNA},</if>
+   				<if test="ctype !=null">CTYPE=#{ctype},</if>
+   				<if test="productNo !=null">PRODUCT_NO=#{productNo},</if>
+   				<if test="productImage !=null">PRODUCT_IMAGE=#{productImage},</if>
+   				<if test="productDesc !=null">PRODUCT_DESC=#{productDesc},</if>
+   				<if test="cNumber !=null">CNUMBER=#{cNumber},</if>
+   				<if test="packingUnit !=null">PACKING_UNIT=#{packingUnit},</if>
+   				<if test="price !=null">PRICE=#{price},</if>
+   				<if test="amount !=null">AMOUNT=#{amount}</if>
+   				<if test="productRequest !=null">PRODUCT_REQUEST=#{productRequest},</if>
+   				<if test="orderNo !=null">ORDER_NO=#{orderNo},</if>
+   			</set>
+   		</trim>
+   		where EXT_CPRODUCT_ID=#{id}
+   </update>
+   
+   <!-- 根据附件的id来删除附件信息 -->
+   <delete id="deleteById">
+   		delete from ext_cproduct_c where EXT_CPRODUCT_ID=#{id}
+   </delete>
 </mapper>

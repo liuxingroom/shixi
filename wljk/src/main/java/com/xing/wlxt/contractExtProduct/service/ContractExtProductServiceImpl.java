@@ -37,5 +37,24 @@ public class ContractExtProductServiceImpl implements ContractExtProductService 
 		
  		contractExtProductMapper.insert(extProduct);     //新增
 	}
+
+
+	@Override
+	public ContractExtProduct get(String id) {
+		ContractExtProduct obj=contractExtProductMapper.get(id);
+		return obj;
+	}
+
+
+	@Override
+	public void update(ContractExtProduct extProduct) {
+		contractExtProductMapper.update(extProduct);
+	}
+
+
+	@Override
+	public void deleteById(String id) {
+		contractExtProductMapper.deleteById(id);
+	}
 	
 }
