@@ -39,8 +39,8 @@ public class ExportController extends BaseController{
 	 * 查看报运信息
 	 */
 	@RequestMapping("/toview.action")
-	public String toview(){
-		
+	public String toview(String id){
+//		exportService.view()
 		return "";
 	}
 	

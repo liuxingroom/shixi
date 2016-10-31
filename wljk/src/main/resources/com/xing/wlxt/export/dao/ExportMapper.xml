@@ -30,6 +30,59 @@
 		<result property="createTime" column="CREATE_TIME"/>
 	</resultMap>
 	
+	<!--报云单的VO对象所对应的resultmap  -->       
+	<resultMap type="com.xing.wlxt.export.view.ExportVO" id="exportVO" extends="exportRM">
+		<collection property="exportProducts" ofType="com.xing.wlxt.exportProduct.view.ExportProductVO">
+			<id property="id" column="export_product_id" jdbcType="VARCHAR"/>
+			<result property="productName" column="product_na" jdbcType="VARCHAR"/>
+			<result property="productNo" column="product_no" jdbcType="VARCHAR"/>
+			<result property="packingUnit" column="packing_unit" jdbcType="VARCHAR"/>
+			<result property="cnumber" column="cnumber" jdbcType="INTEGER"/>
+			<result property="boxNum" column="box_num" jdbcType="INTEGER"/>
+			<result property="grossWeight" column="gross_weight" jdbcType="DOUBLE"/>
+			<result property="netWight" column="net_weight" jdbcType="DOUBLE"/>
+			<result property="sizeLength" column="size_length" jdbcType="DOUBLE"/>
+			<result property="sizeWidth" column="size_width" jdbcType="DOUBLE"/>
+			<result property="sizeHeight" column="size_height" jdbcType="DOUBLE"/>
+			<result property="exPrice" column="ex_price" jdbcType="DOUBLE"/>
+			<result property="tax" column="tax" jdbcType="DOUBLE"/>
+			<result property="orderNo" column="order_no" jdbcType="INTEGER"/>
+			
+			<!-- 报运货物下所属的生产厂家   （报运货物和生产厂家是多对一） -->
+			<association property="factory" javaType="com.xing.wlxt.factory.entity.Factory">
+				<id property="id" column="FACTORY_ID" jdbcType="VARCHAR"/>
+				<result property="fullName" column="FULL_NAME" jdbcType="VARCHAR"/>
+				<result property="factoryNA" column="FACTORY_NAME" jdbcType="VARCHAR"/>
+				<result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+				<result property="phone" column="phone" jdbcType="VARCHAR"/>
+			</association>
+			
+			<!-- 报运货物下的附件信息 -->
+			<collection property="extProducts" ofType="com.xing.wlxt.exportExtProduct.view.ExportExtProductVO">
+				<id property="id" column="ext_ext_eproduct_id" jdbcType="VARCHAR"/>
+				<result property="cType" column="ext_ctype" jdbcType="INTEGER"/>
+				<result property="productNo" column="ext_product_no" jdbcType="VARCHAR"/>
+				<result property="productImage" column="ext_product_image" jdbcType="VARCHAR"/>
+				<result property="productDesc" column="ext_product_desc" jdbcType="VARCHAR"/>
+				<result property="cNumber" column="ext_product_cnumber" jdbcType="INTEGER"/>
+				<result property="prackingNuit" column="ext_praching_nuit" jdbcType="VARCHAR"/>
+				<result property="price" column="ext_price" jdbcType="DOUBLE"/>
+				<result property="amount" column="ext_amount" jdbcType="DOUBLE"/>
+				<result property="productRequest" column="ext_product_request" jdbcType="VARCHAR"/>
+				<result property="orderNO" column="ext_order_no" jdbcType="INTEGER"/>
+				
+				<!-- 报运附件所属的生产厂家 -->
+				<association property="factory" javaType="com.xing.wlxt.factory.entity.Factory">
+					<id property="id" column="ext_factory_id" jdbcType="VARCHAR"/>
+					<result property="fullName" column="ext_full_name" jdbcType="VARCHAR"/>
+					<result property="factoryNA" column="ext_factory_na" jdbcType="VARCHAR"/>
+					<result property="contacts" column="ext_contacts" jdbcType="VARCHAR"/>
+					<result property="phone" column="ext_phone" jdbcType="VARCHAR"/>
+				</association>
+			</collection>
+		</collection>		
+	</resultMap>
+	
 	<select id="find" parameterType="com.xing.wlxt.export.search.ExportSearch" resultMap="exportRM">
 		select (select count(*)
           from export_product_c ecp
@@ -57,6 +110,210 @@
        e.measurement,
        e.state
   from export_c e	
+	</select>
+	
+	<!-- 根据报运表id查询报运表的信息  包括报运的货物信息， 报运的附件信息 -->
+	<select id="view" parameterType="String" resultMap="exportVO">
+		select ec.EXPORT_ID,
+       ec.INPUT_DATE,
+       ec.CONTRACT_IDS,
+       ec.CUSTOMER_CONTRACT,
+       ec.LCNO,
+       ec.CONSIGNEE,
+       ec.MARKS,
+       ec.REMARK,
+       ec.SHIPMENT_PORT,
+       ec.DESTINATION_PORT,
+       ec.TRANSPORT_MODE,
+       ec.PRICE_CONDITION,
+       ec.STATE,
+       ec.GROSS_WEIGHT,
+       ec.NET_WEIGHT,
+       ec.MEASUREMENT,
+       
+       t.export_product_id,
+       t.export_id,
+       t.packing_unit,
+       t.cnumber,
+       t.box_num,
+       t.gross_weight,
+       t.net_weight,
+       t.size_length,
+       t.size_width,
+       t.size_height,
+       t.ex_price,
+       t.tax,
+       t.order_no,
+       t.product_no,
+       t.product_na,
+       t.factory_id,
+       t.full_name,
+       t.factory_na,
+       t.contacts,
+       t.phone,
+       
+       t.ext_ext_eproduct_id,
+       t.ext_export_product_id,
+       t.ext_ctype,
+       t.ext_product_no,
+       t.ext_product_image,
+       t.ext_product_desc,
+       t.ext_product_cnumber,
+       t.ext_praching_nuit,
+       t.ext_price,
+       t.ext_amount,
+       t.ext_product_request,
+       t.ext_order_no,
+       t.ext_factory_id,
+       t.ext_full_name,
+       t.ext_factory_na,
+       t.ext_contacts,
+       t.ext_phone
+
+  from (select EXPORT_ID,
+               INPUT_DATE,
+               CONTRACT_IDS,
+               CUSTOMER_CONTRACT,
+               LCNO,
+               CONSIGNEE,
+               MARKS,
+               REMARK,
+               SHIPMENT_PORT,
+               DESTINATION_PORT,
+               TRANSPORT_MODE,
+               PRICE_CONDITION,
+               STATE,
+               GROSS_WEIGHT,
+               NET_WEIGHT,
+               MEASUREMENT
+          from export_c) ec
+  left join (select ep.export_product_id,
+                    ep.export_id,
+                    ep.packing_unit,
+                    ep.cnumber,
+                    ep.box_num,
+                    ep.gross_weight,
+                    ep.net_weight,
+                    ep.size_length,
+                    ep.size_width,
+                    ep.size_height,
+                    ep.ex_price,
+                    ep.tax,
+                    ep.order_no,
+                    ep.product_no,
+                    ep.product_na,
+                    ep.factory_id,
+                    ep.full_name,
+                    ep.factory_na,
+                    ep.contacts,
+                    ep.phone,
+                    
+                    ext.ext_eproduct_id   as ext_ext_eproduct_id,
+                    ext.EXPORT_PRODUCT_ID as ext_export_product_id,
+                    ext.ctype             as ext_ctype,
+                    ext.product_no        as ext_product_no,
+                    ext.PRODCUT_IMAGE     as ext_product_image,
+                    ext.product_desc      as ext_product_desc,
+                    ext.cnumber           as ext_product_cnumber,
+                    ext.PRACKING_NUIT     as ext_praching_nuit,
+                    ext.price             as ext_price,
+                    ext.amount            as ext_amount,
+                    ext.product_request   as ext_product_request,
+                    ext.order_no          as ext_order_no,
+                    ext.factory_id        as ext_factory_id,
+                    ext.full_name         as ext_full_name,
+                    ext.factory_na        as ext_factory_na,
+                    ext.contacts          as ext_contacts,
+                    ext.phone             as ext_phone
+               from (select ep.export_product_id,
+                            ep.export_id,
+                            ep.packing_unit,
+                            ep.cnumber,
+                            ep.box_num,
+                            ep.gross_weight,
+                            ep.net_weight,
+                            ep.size_length,
+                            ep.size_width,
+                            ep.size_height,
+                            ep.ex_price,
+                            ep.tax,
+                            ep.order_no,
+                            ep.product_no,
+                            ep.product_na,
+                            
+                            f.factory_id,
+                            f.full_name,
+                            f.factory_na,
+                            f.contacts,
+                            f.phone
+                       from (select export_product_id,
+                                    export_id,
+                                    factory_id,
+                                    factory_na,
+                                    packing_unit,
+                                    cnumber,
+                                    box_num,
+                                    gross_weight,
+                                    net_weight,
+                                    size_length,
+                                    size_width,
+                                    size_height,
+                                    ex_price,
+                                    tax,
+                                    order_no,
+                                    product_no,
+                                    product_na
+                               from export_product_c) ep
+                       left join (select factory_id,
+                                        full_name,
+                                        factory_na,
+                                        contacts,
+                                        phone
+                                   from factory_c) f
+                         on f.factory_id = ep.factory_id) ep
+               left join (select ext.ext_eproduct_id,
+                                ext.EXPORT_PRODUCT_ID,
+                                ext.ctype,
+                                ext.product_no,
+                                ext.PRODCUT_IMAGE,
+                                ext.product_desc,
+                                ext.cnumber,
+                                ext.PRACKING_NUIT,
+                                ext.price,
+                                ext.amount,
+                                ext.product_request,
+                                ext.order_no,
+                                f.factory_id,
+                                f.full_name,
+                                f.factory_na,
+                                f.contacts,
+                                f.phone
+                           from (select ext_eproduct_id,
+                                        EXPORT_PRODUCT_ID,
+                                        factory_id,
+                                        ctype,
+                                        product_no,
+                                        PRODCUT_IMAGE,
+                                        product_desc,
+                                        cnumber,
+                                        PRACKING_NUIT,
+                                        price,
+                                        amount,
+                                        product_request,
+                                        order_no
+                                   from ext_eproduct_c) ext
+                           left join (select factory_id,
+                                            full_name,
+                                            factory_na,
+                                            contacts,
+                                            phone
+                                       from factory_c) f
+                             on f.factory_id = ext.factory_id) ext
+                 on ext.export_product_id = ep.export_product_id
+             
+             ) t
+    on ec.EXPORT_ID = t.export_id
+    where ec.export_id=#{id}		
 	</select>
 	
 	<!-- 通过报运单id来获取报运信息 -->
