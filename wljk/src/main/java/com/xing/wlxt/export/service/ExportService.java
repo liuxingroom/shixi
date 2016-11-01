@@ -5,6 +5,7 @@ import java.util.List;
 import com.xing.wlxt.contract.entity.Contract;
 import com.xing.wlxt.export.entity.Export;
 import com.xing.wlxt.export.search.ExportSearch;
+import com.xing.wlxt.export.view.ExportVO;
 
 public interface ExportService {
 
@@ -51,5 +52,18 @@ public interface ExportService {
 	 * @param ids 
 	 */
 	public void cancel(String[] ids);
+	
+	/**
+	 * 根据报运单id来获取报单信息（包括报运单中的货物信息，以及附件信息）
+	 * @param id
+	 * @return
+	 */
+	public ExportVO view(String id);
+
+	/**
+	 * 想报运单中插入一条记录
+	 * @param contractIds
+	 */
+	public void insert(String[] contractIds);
 	
 }

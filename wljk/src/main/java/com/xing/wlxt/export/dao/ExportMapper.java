@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.xing.wlxt.export.entity.Export;
 import com.xing.wlxt.export.search.ExportSearch;
+import com.xing.wlxt.export.view.ExportVO;
 
 public interface ExportMapper {
 
@@ -34,5 +35,12 @@ public interface ExportMapper {
 	 * @param ids
 	 */
 	public void delete(@Param("ids")String[] ids);
+
+	/**
+	 * 根据报运单id来获取报运信息包括货物信息，和附件信息
+	 * @param id
+	 * @return
+	 */
+	public ExportVO view(@Param("id")String id);
 	
 }

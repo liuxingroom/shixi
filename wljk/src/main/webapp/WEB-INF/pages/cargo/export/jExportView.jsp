@@ -103,20 +103,20 @@
 	</tr>
 	</thead>
 	<tbody class="tableBody" >
-	
+	<!-- 遍历报运单中的货物 -->
 	<c:forEach items="${obj.exportProducts}" var="cp" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td>${status.index+1}</td>
-		<td>${cp.exportProducts.productNo}</td>
-		<td>${cp.exportProducts.cnumber}</td>
-		<td>${cp.exportProducts.grossWeight}</td>
-		<td>${cp.exportProducts.netWight}</td>
-		<td>${cp.exportProducts.sizeLength}</td>
-		<td>${cp.exportProducts.sizeWidth}</td>
-		<td>${cp.exportProducts.exPrice}</td>
-		<td>${cp.exportProducts.tax}</td>
+		<td>${cp.productNo}</td>
+		<td>${cp.cnumber}</td>
+		<td>${cp.grossWeight}</td>
+		<td>${cp.netWight}</td>
+		<td>${cp.sizeLength}</td>
+		<td>${cp.sizeWidth}</td>
+		<td>${cp.exPrice}</td>
+		<td>${cp.tax}</td>
 	</tr>
-	<c:forEach items="${cp.contractExtProduct}" var="ext" varStatus="status">
+	<c:forEach items="${cp.extProducts}" var="ext" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
 		<td><font color="blue">附件：${status.index+1}</font></td>
 		<td>${ext.productNo}</td>

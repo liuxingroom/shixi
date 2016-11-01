@@ -13,6 +13,7 @@ import com.xing.wlxt.base.controller.BaseController;
 import com.xing.wlxt.contract.entity.Contract;
 import com.xing.wlxt.export.entity.Export;
 import com.xing.wlxt.export.service.ExportService;
+import com.xing.wlxt.export.view.ExportVO;
 
 /**
  * 报运信息
@@ -34,14 +35,15 @@ public class ExportController extends BaseController{
 		model.addAttribute("dataList", dataList);
 		return "/cargo/export/jExportList";
 	}
-	
+	 
 	/**
 	 * 查看报运信息
 	 */
 	@RequestMapping("/toview.action")
-	public String toview(String id){
-//		exportService.view()
-		return "";
+	public String toview(String id,Model model){
+		ExportVO obj=exportService.view(id);	 //根据id来获取报运单信息
+		model.addAttribute("obj", obj);      //将获取的报云单信息带到页面显示
+		return "/cargo/export/jExportView";
 	}
 	
 	/**
@@ -70,7 +72,6 @@ public class ExportController extends BaseController{
 	 */
 	@RequestMapping("/contractList.action")
 	public String contractList(Model model){
-		
 		List<Contract> dataList=exportService.getContractList(); //货物购销合同列表
 		model.addAttribute("dataList", dataList);
 		return "/cargo/export/jContractList";
@@ -81,9 +82,9 @@ public class ExportController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping("/insert.action")
-	public String insert(){
-		
-		return "redirect:/";
+	public String insert(@RequestParam("id")String[] contractIds){
+		exportService.insert(contractIds);        //向报运表中插入报运信息
+		return "redirect:/cargo/export/list.action";
 	}
 	
 	/**
@@ -101,7 +102,6 @@ public class ExportController extends BaseController{
 	@RequestMapping("/submit.action")
 	public  String submit(@RequestParam("id")String [] ids){
 		exportService.submit(ids);   //报云单上报
-		
 		return "redirect:/cargo/export/list.action";
 	}
 	
