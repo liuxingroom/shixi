@@ -74,7 +74,7 @@ public class ExportController extends BaseController{
 	public String contractList(Model model){
 		List<Contract> dataList=exportService.getContractList(); //货物购销合同列表
 		model.addAttribute("dataList", dataList);
-		return "/cargo/export/jContractList";
+		return "cargo/export/jContractList";
 	}
 	
 	/**

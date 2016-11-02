@@ -15,4 +15,27 @@
        	</foreach>
        )
    </delete>
+   
+   <!-- 新增报运下所属货物的附件信息 -->
+   <insert id="insert" parameterType="com.xing.wlxt.exportExtProduct.entity.ExportExtProduct">
+   		insert into EXT_EPRODUCT_C(EXT_EPRODUCT_ID,EXPORT_PRODUCT_ID,FACTORY_ID,FACTORY_NA,CTYPE,
+   								PRODUCT_NO,PRODCUT_IMAGE,PRODUCT_DESC,CNUMBER,PRACKING_NUIT,AMOUNT,
+   								PRODUCT_REQUEST,ORDER_NO)
+   		values
+   		(
+   			#{id,jdbcType=VARCHAR},
+   			#{exportProductID,jdbcType=VARCHAR},
+   			#{factoryID,jdbcType=VARCHAR},
+   			#{factoryNA,jdbcType=VARCHAR},
+   			#{cType,jdbcType=INTEGER},
+   			#{productNo,jdbcType=VARCHAR},
+   			#{productImage,jdbcType=VARCHAR},
+   			#{productDesc,jdbcType=VARCHAR},
+   			#{cNumber,jdbcType=INTEGER},
+   			#{prackingNuit,jdbcType=VARCHAR},
+   			#{amount,jdbcType=VARCHAR},
+   			#{productRequest,jdbcType=VARCHAR},
+   			#{orderNO,jdbcType=INTEGER}
+   		)
+   </insert>
 </mapper>

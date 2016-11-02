@@ -24,6 +24,8 @@ public class ExportProduct implements Serializable{
 	private String productName;
 	/**货号*/
 	private String productNO;
+	/**价格*/
+	private Double price;
 	/**包装单位*/
 	private String packingUnit;
 	/**数量(分次走货在此体现)*/
@@ -149,6 +151,12 @@ public class ExportProduct implements Serializable{
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	
 	

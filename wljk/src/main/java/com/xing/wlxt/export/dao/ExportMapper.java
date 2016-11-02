@@ -42,5 +42,11 @@ public interface ExportMapper {
 	 * @return
 	 */
 	public ExportVO view(@Param("id")String id);
+
+	/**
+	 * 新增报运信息
+	 * @param export
+	 */
+	public void insert(Export export);
 	
 }

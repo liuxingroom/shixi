@@ -14,7 +14,7 @@
    		<result column="CNUMBER" property="cNumber" jdbcType="INTEGER"/>
    		<result column="OUT_NUMBER" property="outNumber" jdbcType="INTEGER"/>
    		<result column="LOADING_RATE" property="loadingRate" jdbcType="VARCHAR"/>
-   		<result column="BOX_NUM" property="boxNum" jdbcType="VARCHAR"/>
+   		<result column="BOX_NUM" property="boxNum" jdbcType="INTEGER"/>
    		<result column="PACKING_UNIT" property="packingUnit" jdbcType="VARCHAR"/>
    		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
    		<result column="AMOUNT" property="amount" jdbcType="DOUBLE"/>
@@ -63,7 +63,7 @@
 			#{cNumber,jdbcType=INTEGER},
 			#{outNumber,jdbcType=INTEGER},
 			#{loadingRate,jdbcType=VARCHAR},
-			#{boxNum,jdbcType=VARCHAR},
+			#{boxNum,jdbcType=INTEGER},
 			#{packingUnit,jdbcType=VARCHAR},
 			#{price,jdbcType=DOUBLE},
 			#{amount,jdbcType=DOUBLE},

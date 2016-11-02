@@ -353,4 +353,35 @@
 			#{id}
 		</foreach>
 	</delete>
+	
+	<!-- 新增报运信息 -->
+	<insert id="insert" parameterType="com.xing.wlxt.export.entity.Export">
+		insert into export_c(EXPORT_ID,INPUT_DATE,CONTRACT_IDS,CUSTOMER_CONTRACT,LCNO,CONSIGNEE,
+							MARKS,REMARK,SHIPMENT_PORT,DESTINATION_PORT,TRANSPORT_MODE,
+							PRICE_CONDITION,GROSS_WEIGHT,NET_WEIGHT,MEASUREMENT,STATE,
+							CREATE_BY,CREATE_DEPT,CREATE_TIME)
+		values
+		(
+			#{id, jdbcType=VARCHAR},
+			#{inputDate, jdbcType=TIMESTAMP},
+			#{contractIds, jdbcType=VARCHAR},
+			#{customerContract, jdbcType=VARCHAR},
+			#{LCNO, jdbcType=VARCHAR},
+			#{consignee, jdbcType=VARCHAR},
+			#{marks, jdbcType=VARCHAR},
+			#{remark, jdbcType=VARCHAR},
+			#{shipmentPort, jdbcType=VARCHAR},
+			#{destinationPort, jdbcType=VARCHAR},
+			#{transportMode, jdbcType=VARCHAR},
+			#{priceCondition, jdbcType=VARCHAR},
+			#{grossWeight, jdbcType=DOUBLE},
+			#{netWeight, jdbcType=DOUBLE},
+			#{measurement, jdbcType=DOUBLE},
+			#{state, jdbcType=INTEGER},
+			
+			#{createBy, jdbcType=VARCHAR},
+			#{createDept, jdbcType=VARCHAR},
+			#{createTime, jdbcType=VARCHAR}
+		)
+	</insert>
 </mapper>

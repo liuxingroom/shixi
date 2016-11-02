@@ -2,6 +2,8 @@ package com.xing.wlxt.exportExtProduct.dao;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.xing.wlxt.exportExtProduct.entity.ExportExtProduct;
+
 public interface ExportExtProductMapper {
 
 	/**
@@ -9,5 +11,11 @@ public interface ExportExtProductMapper {
 	 * @param ids
 	 */
 	public void deleteByExportId(@Param("ids")String[] ids);
+
+	/**
+	 * 新增报运下所属货物的附件信息
+	 * @param extep
+	 */
+	public void insert(ExportExtProduct extep);
 	
 }

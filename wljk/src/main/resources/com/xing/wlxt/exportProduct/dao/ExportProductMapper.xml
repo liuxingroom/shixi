@@ -10,4 +10,33 @@
        		#{id}
        	</foreach>
    </delete>
+   
+   <!-- 新增报运下货物信息 -->
+   <insert id="insert" parameterType="com.xing.wlxt.exportProduct.entity.ExportProduct">
+   		insert into export_product_c(EXPORT_PRODUCT_ID,EXPORT_ID,FACTORY_ID,FACTORY_NA,
+   									PRODUCT_NO,PACKING_UNIT,CNUMBER,BOX_NUM,GROSS_WEIGHT,
+   									NET_WEIGHT,SIZE_LENGTH,SIZE_WIDTH,SIZE_HEIGHT,EX_PRICE,PRICE,TAX,
+   									ORDER_NO,PRODUCT_NA)
+   		values
+   		(
+   			#{id, jdbcType=VARCHAR},
+   			#{exportID, jdbcType=VARCHAR},
+   			#{factoryID, jdbcType=VARCHAR},
+   			#{factoryName, jdbcType=VARCHAR},
+   			#{productNO, jdbcType=VARCHAR},
+   			#{packingUnit, jdbcType=VARCHAR},
+   			#{cnumber, jdbcType=INTEGER},
+   			#{boxNum, jdbcType=INTEGER},
+   			#{grossWeight, jdbcType=DOUBLE},
+   			#{netWight, jdbcType=DOUBLE},
+   			#{sizeLength, jdbcType=DOUBLE},
+   			#{sizeWidth, jdbcType=DOUBLE},
+   		    #{sizeHeight, jdbcType=DOUBLE},
+   			#{exPrice, jdbcType=DOUBLE},
+   			#{price, jdbcType=DOUBLE},
+   			#{tax, jdbcType=DOUBLE},
+   			#{orderNo, jdbcType=INTEGER},
+   			#{productName, jdbcType=VARCHAR}
+		)
+   </insert>
 </mapper>

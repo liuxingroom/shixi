@@ -41,7 +41,7 @@ public class ContractProductVO implements Serializable{
 	/**裝率*/
 	private String loadingRate;
 	/**箱数*/
-	private String boxNum;
+	private Integer boxNum;
 	/**包装单位*/
 	private String packingUnit;
 	/**单价*/
@@ -124,10 +124,10 @@ public class ContractProductVO implements Serializable{
 	public void setLoadingRate(String loadingRate) {
 		this.loadingRate = loadingRate;
 	}
-	public String getBoxNum() {
+	public Integer getBoxNum() {
 		return boxNum;
 	}
-	public void setBoxNum(String boxNum) {
+	public void setBoxNum(Integer boxNum) {
 		this.boxNum = boxNum;
 	}
 	public String getPackingUnit() {
