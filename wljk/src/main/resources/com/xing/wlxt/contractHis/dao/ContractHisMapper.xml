@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xing.wlxt.contractHis.dao.ContractHisMapper">
+   
+   <resultMap type="com.xing.wlxt.contract.entity.Contract" id="contractHisRM">
+		<id column="CONTRACT_ID" property="id" jdbcType="VARCHAR"/>
+		
+		<!-- 虚拟字段  -->
+		<result column="CPNUM" property="cpnum" jdbcType="VARCHAR"/>
+		<result column="EXTUNM" property="extnum" jdbcType="VARCHAR"/>
+		
+		<result column="OFFEROR" property="offeror" jdbcType="VARCHAR"/>
+		<result column="CONTRACT_NO" property="contractNO" jdbcType="VARCHAR"/>
+		<result column="SIGNING_DATE" property="signingDate" jdbcType="TIMESTAMP"/>
+		<result column="INPUT_BY" property="inputBy" jdbcType="VARCHAR"/>
+		<result column="CHECK_BY" property="checkBy" jdbcType="VARCHAR"/>
+		<result column="INSPECTOR" property="inspector" jdbcType="VARCHAR"/>
+		<result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="DOUBLE"/>
+		<result column="IMPORT_NUM" property="importNum" jdbcType="INTEGER"/>
+		<result column="CREQUEST" property="crequest" jdbcType="VARCHAR"/>
+		<result column="CUSTOM_NAME" property="customName" jdbcType="VARCHAR"/>
+		<result column="DELIVERY_PERIOD" property="deliveryPeriod" jdbcType="TIMESTAMP"/>
+		<result column="SHIP_TIME" property="shipTime" jdbcType="TIMESTAMP"/>
+		<result column="TRADE_TERMS" property="tradeTerms" jdbcType="VARCHAR"/>
+		<result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+		<result column="PRINT_STYLE" property="printStyle" jdbcType="CHAR"/>
+		<result column="OLD_STATE" property="oldState" jdbcType="INTEGER"/>
+		<result column="STATE" property="state" jdbcType="INTEGER"/>
+		<result column="OUT_STATE" property="outState" jdbcType="INTEGER"/>
+		<result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+		<result column="CREATE_DEPT" property="createDept" jdbcType="VARCHAR"/>
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<resultMap type="com.xing.wlxt.contract.view.ContractVO" id="contractVOHisRM" extends="contractHisRM">
+		<!-- 合同中的货物信息 -->
+		<collection property="contractProduct" ofType="com.xing.wlxt.contractProduct.view.ContractProductVO">
+			<id property="id" column="CONTRACT_PRODUCT_ID" jdbcType="VARCHAR"/>
+			<result property="productNo" column="PRODUCT_NO" jdbcType="VARCHAR"/>
+			<result property="productImage" column="PRODUCT_IMAGE" jdbcType="VARCHAR"/>
+			<result property="productDesc" column="PRODUCT_DESC" jdbcType="VARCHAR"/>
+			<result property="cNumber" column="CNUMBER" jdbcType="INTEGER"/>
+			<result property="outNumber" column="OUT_NUMBER" jdbcType="INTEGER"/>
+			<result property="loadingRate" column="LOADING_RATE" jdbcType="VARCHAR"/>
+			<result property="boxNum" column="BOX_NUM" jdbcType="INTEGER"/>
+			<result property="packingUnit" column="PACKING_UNIT" jdbcType="VARCHAR"/>
+			<result property="price" column="PRICE" jdbcType="DOUBLE"/>
+			<result property="amount" column="AMOUNT" jdbcType="DOUBLE"/>
+			<result property="finished" column="FINISHED" jdbcType="INTEGER"/>
+			<result property="exts" column="EXTS" jdbcType="VARCHAR"/>
+			<result property="orderNo" column="ORDER_NO" jdbcType="INTEGER"/>
+			
+			<!--货物所属的生产厂家   （货物和生产厂家是多对一）-->
+			<association property="factoryID" javaType="com.xing.wlxt.factory.entity.Factory">
+				<id property="id" column="FACTORY_ID" jdbcType="VARCHAR"/>
+				<result property="fullName" column="FULL_NAME" jdbcType="VARCHAR"/>
+				<result property="factoryNA" column="FACTORY_NAME" jdbcType="VARCHAR"/>
+				<result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+			</association>
+			
+			<!--货物的附件信息  （货物和附件是一对多）-->
+			<collection property="contractExtProduct" ofType="com.xing.wlxt.contractExtProduct.view.ContractExtProductVO">
+				<id property="id" column="EXT_CPRODUCT_ID" jdbcType="VARCHAR"/>
+				<result property="ctype" column="CTYPE" jdbcType="INTEGER"/>
+				<result property="productNo" column="EXT_PRODUCT_NO" jdbcType="VARCHAR"/>
+				<result property="productImage" column="EXT_PRODUCT_IMAGE" jdbcType="VARCHAR"/>
+				<result property="productDesc" column="EXT_PRODUCT_DESC" jdbcType="VARCHAR"/>
+				<result property="cNumber" column="EXT_CNUMBER" jdbcType="INTEGER"/>
+				<result property="packingUnit" column="EXT_PACKING_UNIT" jdbcType="VARCHAR"/>
+				<result property="price" column="EXT_PRICE" jdbcType="DOUBLE"/>
+				<result property="amount" column="EXT_AMOUNT" jdbcType="DOUBLE"/>
+				<result property="productRequest" column="PRODUCT_REQUEST" jdbcType="VARCHAR"/>
+				<result property="orderNo" column="EXT_ORDER_NO" jdbcType="INTEGER"/>
+				
+				<!-- 附件所对应的生产厂家   （ 附件和生产厂家是多对一）-->
+				<association property="factoryID" javaType="com.xing.wlxt.factory.entity.Factory">
+					<id property="id" column="EXT_FACTORY_ID" jdbcType="VARCHAR"/>
+					<result property="fullName" column="EXT_FULL_NAME" jdbcType="VARCHAR"/>
+					<result property="factoryNA" column="EXT_FACTORY_NAME" jdbcType="VARCHAR"/>
+					<result property="contacts" column="EXT_CONTACTS" jdbcType="VARCHAR"/>
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+	<!-- 查询所有的购销合同
+		附件数，货物数这两个虚拟字段是采用sql语句计算出来的（虚拟字段：在数据库中不存在该字段）
+		总金额也是通过sql语句计算出来的
+	 -->
+	<select id="find" resultMap="contractHisRM" parameterType="com.xing.wlxt.contract.search.ContractSearch">
+		select (select count(*)
+          from contract_product_his_c cp
+         where cp.contract_id = c.contract_id) CPNUM,
+       (select count(*)
+          from ext_cproduct_his_c ep
+         where ep.contract_product_id in
+               (select cp.contract_product_id
+                  from contract_product_his_c cp
+                 where cp.contract_id = c.contract_id)) EXTUNM,
+       (nvl((select sum(cp.price * cp.amount) cptotal
+              from contract_product_his_c cp
+             where cp.contract_id = c.contract_id),
+            0) + nvl((select sum(ep.price * ep.amount) exttotal
+                        from ext_cproduct_his_c ep
+                       where ep.contract_product_id in
+                             (select cp.contract_product_id
+                                from contract_product_his_c cp
+                               where cp.contract_id = c.contract_id)),
+                      0)) total_amount,
+       c.CONTRACT_ID,
+       c.OFFEROR,
+       c.CONTRACT_NO,
+       c.SIGNING_DATE,
+       c.INPUT_BY,
+       c.CHECK_BY,
+       c.INSPECTOR,
+       c.IMPORT_NUM,
+       c.CREQUEST,
+       c.CUSTOM_NAME,
+       c.DELIVERY_PERIOD,
+       c.SHIP_TIME,
+       c.TRADE_TERMS,
+       c.REMARK,
+       c.PRINT_STYLE,
+       c.OLD_STATE,
+       c.STATE,
+       c.OUT_STATE
+  from contract_his_c c
+  <where>
+  	<if test="state !=null">STATE=#{state}</if>
+  </where>
+	</select>
+	
+	<!-- 获取购销合同以及与购销合同相关的货物，附件，生产厂家的信息 -->
+	<select id="view" parameterType="String" resultMap="contractVOHisRM">
+		select c.contract_id,
+       c.offeror,
+       c.contract_no,
+       c.signing_date,
+       c.input_by,
+       c.check_by,
+       c.inspector,
+       c.total_amount,
+       c.import_num,
+       c.crequest,
+       c.custom_name,
+       c.delivery_period,
+       c.ship_time,
+       c.trade_terms,
+       c.remark,
+       c.print_style,
+       c.old_state,
+       c.state,
+       c.out_state,
+       c.create_by,
+       c.create_dept,
+       c.create_time,
+       
+       t.contract_product_id,
+       t.product_no,
+       t.product_image,
+       t.product_desc,
+       t.cnumber,
+       t.out_number,
+       t.loading_rate,
+       t.box_num,
+       t.packing_unit,
+       t.price,
+       t.amount,
+       t.finished,
+       t.exts,
+       t.order_no,
+       t.factory_id,
+       t.full_name,
+       t.factory_na,
+       t.contacts,
+       t.phone,
+       
+       t.ext_cproduct_id,
+       t.ctype,
+       t.ext_product_no,
+       t.ext_product_image,
+       t.ext_product_desc,
+       t.ext_cnumber,
+       t.ext_packing_unit,
+       t.ext_price,
+       t.ext_amount,
+       t.product_request,
+       t.ext_order_no,
+       t.ext_factory_id,
+       t.ext_full_name,
+       t.ext_factory_name,
+       t.ext_contacts,
+       t.ext_phone
+  from (select contract_id,
+               offeror,
+               contract_no,
+               signing_date,
+               input_by,
+               check_by,
+               inspector,
+               total_amount,
+               import_num,
+               crequest,
+               custom_name,
+               delivery_period,
+               ship_time,
+               trade_terms,
+               remark,
+               print_style,
+               old_state,
+               state,
+               out_state,
+               create_by,
+               create_dept,
+               create_time
+          from contract_his_c) c
+  left join (select cp.contract_product_id,
+                    cp.contract_id,
+                    cp.product_no,
+                    cp.product_image,
+                    cp.product_desc,
+                    cp.cnumber,
+                    cp.out_number,
+                    cp.loading_rate,
+                    cp.box_num,
+                    cp.packing_unit,
+                    cp.price,
+                    cp.amount,
+                    cp.finished,
+                    cp.exts,
+                    cp.order_no,
+                    cp.factory_id,
+                    cp.full_name,
+                    cp.factory_na,
+                    cp.contacts,
+                    cp.phone,
+                    
+                    ext.ext_cproduct_id,
+                    ext.ctype,
+                    ext.product_no      as ext_product_no,
+                    ext.product_image   as ext_product_image,
+                    ext.product_desc    as ext_product_desc,
+                    ext.cnumber         as ext_cnumber,
+                    ext.packing_unit    as ext_packing_unit,
+                    ext.price           as ext_price,
+                    ext.amount          as ext_amount,
+                    ext.product_request,
+                    ext.order_no        as ext_order_no,
+                    ext.factory_id      as ext_factory_id,
+                    ext.full_name       as ext_full_name,
+                    ext.factory_na      as ext_factory_name,
+                    ext.contacts        as ext_contacts,
+                    ext.phone           as ext_phone
+               from (select cp.contract_product_id,
+                            cp.contract_id,
+                            cp.product_no,
+                            cp.product_image,
+                            cp.product_desc,
+                            cp.cnumber,
+                            cp.out_number,
+                            cp.loading_rate,
+                            cp.box_num,
+                            cp.packing_unit,
+                            cp.price,
+                            cp.amount,
+                            cp.finished,
+                            cp.exts,
+                            cp.order_no,
+                            f.factory_id,
+                            f.full_name,
+                            f.factory_na,
+                            f.contacts,
+                            f.phone
+                       from (select contract_product_id,
+                                    contract_id,
+                                    factory_id,
+                                    product_no,
+                                    product_image,
+                                    product_desc,
+                                    cnumber,
+                                    out_number,
+                                    loading_rate,
+                                    box_num,
+                                    packing_unit,
+                                    price,
+                                    amount,
+                                    finished,
+                                    exts,
+                                    order_no
+                               from contract_product_his_c) cp
+                       left join (select factory_id,
+                                        full_name,
+                                        factory_na,
+                                        contacts,
+                                        phone
+                                   from factory_c) f
+                         on f.factory_id = cp.factory_id) cp
+               left join (select ext.ext_cproduct_id,
+                                ext.contract_product_id,
+                                ext.ctype,
+                                ext.product_no,
+                                ext.product_image,
+                                ext.product_desc,
+                                ext.cnumber,
+                                ext.packing_unit,
+                                ext.price,
+                                ext.amount,
+                                ext.product_request,
+                                ext.order_no,
+                                f.factory_id,
+                                f.full_name,
+                                f.factory_na,
+                                f.contacts,
+                                f.phone
+                           from (select ext_cproduct_id,
+                                        contract_product_id,
+                                        factory_id,
+                                        ctype,
+                                        product_no,
+                                        product_image,
+                                        product_desc,
+                                        cnumber,
+                                        packing_unit,
+                                        price,
+                                        amount,
+                                        product_request,
+                                        order_no
+                                   from ext_cproduct_his_c) ext
+                           left join (select factory_id,
+                                            full_name,
+                                            factory_na,
+                                            contacts,
+                                            phone
+                                       from factory_c) f
+                             on f.factory_id = ext.factory_id) ext
+                 on ext.contract_product_id = cp.contract_product_id) t
+    on t.contract_id = c.contract_id
+ where c.contract_id = #{id}
+		
+	</select>
+</mapper>
