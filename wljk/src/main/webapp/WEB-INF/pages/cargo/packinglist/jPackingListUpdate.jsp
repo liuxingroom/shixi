@@ -54,7 +54,7 @@
 	            <td class="columnTitle_mustbe">唛头：</td>
 	            <td class="tableContent"><textarea name="marks" style="height:120px;">${obj.marks}</textarea></td>
 	            <td class="columnTitle_mustbe">描述：</td>
-	            <td class="tableContent"><textarea name="descriptions" style="height:120px;">${obj.descriptions}</textarea></td>
+	            <td class="tableContent"><textarea name="desriptions" style="height:120px;">${obj.desriptions}</textarea></td>
 	        </tr>
 		</table>
 	</div>
@@ -71,7 +71,7 @@
 <div>
 
 <div style="text-align:left;">
-	${divData}
+	<%-- ${divData} --%>
 </div>
  
 </form>

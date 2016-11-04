@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xing.wlxt.packingList.dao.PackingListMapper">
+   <resultMap type="com.xing.wlxt.packingList.entity.PackingList" id="packingRM">
+   		<id column="PACKING_LIST_ID" property="id" jdbcType="VARCHAR"/>
+   		<result column="SELLER" property="seller" jdbcType="VARCHAR"/>
+   		<result column="BAYER" property="buyer" jdbcType="VARCHAR"/>
+   		<result column="INVOICE_NO" property="invoiceNo" jdbcType="VARCHAR"/>
+   		<result column="INVOICE_DATA" property="invoiceDate" jdbcType="TIMESTAMP"/>
+   		<result column="MARKS" property="marks" jdbcType="VARCHAR"/>
+   		<result column="DESRIPTIONS" property="desriptions" jdbcType="VARCHAR"/>
+   		<result column="EXPORT_IDS" property="exportIds" jdbcType="VARCHAR"/>
+   		<result column="EXPORT_NOS" property="exportNos" jdbcType="VARCHAR"/>
+   		<result column="STATE" property="state" jdbcType="INTEGER"/>
+   		<result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+   		<result column="CREATE_DEPT" property="createDept" jdbcType="VARCHAR"/>
+   		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+   </resultMap>
+   
+   <!-- 查询装箱的所有信息 -->
+   <select id="find" parameterType="com.xing.wlxt.packingList.search.PackingListSearch" resultMap="packingRM">
+   		select * from PACKING_LIST_C
+   </select>
+   
+   <!-- 根据id来删除报运信息 -->
+   <delete id="delete">
+   		delete from PACKING_LIST_C where PACKING_LIST_ID in 
+   		<foreach collection="ids" open="(" close=")" separator="," item="id">
+   			#{id}
+   		</foreach>
+   </delete>
+   
+   <!-- 根据id来获取报运单信息 -->
+   <select id="get" resultMap="packingRM">
+   		select * from PACKING_LIST_C where PACKING_LIST_ID=#{id}
+   </select>
+   
+   <!-- 更新装箱单 -->
+   <update id="update" parameterType="com.xing.wlxt.packingList.entity.PackingList">
+   		update PACKING_LIST_C 
+   		<set>
+   			<trim suffixOverrides=",">
+   				<if test="seller !=null">SELLER=#{seller,jdbcType=VARCHAR},</if>
+   				<if test="buyer !=null">BAYER=#{buyer,jdbcType=VARCHAR},</if>
+   				<if test="invoiceNo !=null">INVOICE_NO=#{invoiceNo,jdbcType=VARCHAR},</if>
+   				<if test="invoiceDate !=null">INVOICE_DATA=#{invoiceDate,jdbcType=VARCHAR},</if>
+   				<if test="marks !=null">MARKS=#{marks,jdbcType=VARCHAR},</if>
+   				<if test="desriptions !=null">DESRIPTIONS=#{desriptions,jdbcType=VARCHAR},</if>
+   				<if test="exportIds !=null">EXPORT_IDS=#{exportIds,jdbcType=VARCHAR},</if>
+   				<if test="exportNos !=null">EXPORT_NOS=#{exportNos,jdbcType=VARCHAR},</if>
+   				<if test="state !=null">STATE=#{state,jdbcType=VARCHAR},</if>
+   			</trim>
+   		</set>
+		where PACKING_LIST_ID=#{id}
+   </update>
+</mapper>

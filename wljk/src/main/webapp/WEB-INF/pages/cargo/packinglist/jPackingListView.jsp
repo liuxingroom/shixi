@@ -48,7 +48,7 @@
 	            <td class="columnTitle_mustbe">唛头：</td>
 	            <td class="tableContent"><pre>${obj.marks}</pre></td>
 	            <td class="columnTitle_mustbe">描述：</td>
-	            <td class="tableContent"><pre>${obj.descriptions}</pre></td>
+	            <td class="tableContent"><pre>${obj.desriptions}</pre></td>
 	        </tr>
 		</table>
 	</div>
