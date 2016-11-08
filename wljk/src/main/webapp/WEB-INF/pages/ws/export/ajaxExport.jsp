@@ -23,8 +23,8 @@
     	function sendMsg(){
     		var id = document.getElementById("id").value;				//用户输入的条件
     		
-	    	var url = "http://localhost/jk/cxf/ExportServiceImpl";			//webService访问链接
-	    	var requestBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:q0=\"http://impl.service.jk.itcast.cn/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+	    	var url = "http://localhost:8080/wlxt/cxf/exportService";			//webService访问链接
+	    	var requestBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:q0=\"http://service.export.wlxt.xing.com/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
 	    					+ "<soapenv:Body><q0:get><arg0>"+id+"</arg0></q0:get></soapenv:Body></soapenv:Envelope>";
 	    	
 	    	

@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
@@ -27,6 +29,7 @@ import com.xing.wlxt.utils.UtilFuns;
 import com.xing.wlxt.utils.WLXTUtils;
 
 @Service
+@WebService
 public class ExportServiceImpl implements ExportService{
 	
 	@Resource
@@ -41,9 +44,17 @@ public class ExportServiceImpl implements ExportService{
 	@Resource
 	ExportProductMapper exportProductMapper;
 	
+	public static ExportMapper mapper;
 	/**定义日志对象*/
 	Logger logger=Logger.getLogger(ExportServiceImpl.class);
-	@Override
+	
+	//利用set方法，在cxf中注入mapper，这样cxf的WebService才可以查询我们系统的数据
+	@WebMethod(exclude=true)
+	public void setExportMapper(ExportMapper exportMapper){
+		this.mapper=exportMapper;
+	}
+	
+	@WebMethod(exclude=true)
 	public List<Contract> getContractList() {
 		ContractSearch search=new ContractSearch();  //封装查询条件
 		search.setState(1);
@@ -51,25 +62,28 @@ public class ExportServiceImpl implements ExportService{
 		return dataList;
 	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public List<Export> find(ExportSearch search) {
 		List<Export> dataList=exportMapper.find(search);
 		return dataList;
 	}
-
-	@Override
+	@WebMethod(exclude=true)
 	public Export get(String id) {
-
 		Export export=exportMapper.get(id);
 		return export;
 	}
+	
+	public Export getByWS(String id){
+		Export export=mapper.get(id);
+		return export;
+	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public void update(Export export) {
 		exportMapper.update(export);
 	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public void delete(String[] ids) {
 		
 		exportExtProductMapper.deleteByExportId(ids);  //根据报运id来删除报运下的附件信息
@@ -78,7 +92,7 @@ public class ExportServiceImpl implements ExportService{
  		exportMapper.delete(ids);    //删除报运单信息
 	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public void submit(String [] ids) {
 		for(String id:ids){
 			Export export=new Export();
@@ -89,7 +103,7 @@ public class ExportServiceImpl implements ExportService{
 		
 	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public void cancel(String [] ids) {
 		for(String id:ids){
 			Export export=new Export();
@@ -99,13 +113,13 @@ public class ExportServiceImpl implements ExportService{
 		}
 	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public ExportVO view(String id) {
 		ExportVO obj=exportMapper.view(id);
 		return obj;
 	}
 
-	@Override
+	@WebMethod(exclude=true)
 	public void insert(String[] contractIds) {
 		/*
 		 * 步骤：

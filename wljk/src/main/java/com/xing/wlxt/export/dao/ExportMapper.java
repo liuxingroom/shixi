@@ -3,11 +3,13 @@ package com.xing.wlxt.export.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import com.xing.wlxt.export.entity.Export;
 import com.xing.wlxt.export.search.ExportSearch;
 import com.xing.wlxt.export.view.ExportVO;
 
+@Repository
 public interface ExportMapper {
 
 	/**

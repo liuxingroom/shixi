@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:jaxws="http://cxf.apache.org/jaxws" 
+		xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans.xsd 
+							http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<!-- 导入cxf-core下的cxf.xml文件 -->
+	<import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <!-- 导入cxf-rt-transports-http下的cxf-servlet.xml文件 -->
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    
+    <!-- 声明WebService Bean，发布WebService -->
+    <bean id="exportService" class="com.xing.wlxt.export.service.ExportServiceImpl">
+    	<!-- 注入mapper类 -->
+    	<property name="exportMapper">
+    		<ref bean="exportMapper"/>
+    	</property>
+    </bean>
+    
+    <!-- implementor表示向外提供的webservice的方法所在的类     address代表访问地址--> 
+    <jaxws:endpoint implementor="com.xing.wlxt.export.service.ExportServiceImpl" address="/exportService"></jaxws:endpoint>
+</beans>
