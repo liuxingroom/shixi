@@ -30,7 +30,7 @@ public class ContractController extends BaseController{
 	public String list(Model model){
 		List<Contract> dataList=contractService.find(null);
 		model.addAttribute("dataList", dataList);
-		return "/cargo/contract/jContractList";
+		return "/cargo/contract/jContractList.jsp";
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class ContractController extends BaseController{
 	public String toview(String id,Model model){
 		ContractVO obj=contractService.view(id);
 		model.addAttribute("obj", obj);
-		return "/cargo/contract/jContractView";
+		return "/cargo/contract/jContractView.jsp";
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class ContractController extends BaseController{
 	 */
 	@RequestMapping("/tocreate.action")
 	public String tocreate(){
-		return "/cargo/contract/jContractCreate";
+		return "/cargo/contract/jContractCreate.jsp";
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class ContractController extends BaseController{
 	public String toupdate(Model model,String id){
 		Contract obj=contractService.get(id);
 		model.addAttribute("obj", obj);
-		return "/cargo/contract/jContractUpdate";
+		return "/cargo/contract/jContractUpdate.jsp";
 	}
 	
 	/**

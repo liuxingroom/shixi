@@ -42,7 +42,7 @@ public class ContractProductController {
 		//某个合同下的货物列表
 		List<ContractProduct> dataList=contractProductService.findContractProductByContractId(contractId);
 		model.addAttribute("dataList", dataList);
-		return "/cargo/contract/jContractProductCreate";  //货物的新增页面
+		return "/cargo/contract/jContractProductCreate.jsp";  //货物的新增页面
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class ContractProductController {
 		//获取所有的生产厂家信息
 		List<Factory> factoryList=factoryService.findFactory();
 		model.addAttribute("factoryList", factoryList);
-		return "/cargo/contract/jContractProductUpdate";
+		return "/cargo/contract/jContractProductUpdate.jsp";
 	}
 	
 	/**

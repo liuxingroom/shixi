@@ -11,6 +11,6 @@ public class WSExportController extends BaseController{
 	
 	@RequestMapping("/toedit.action")
 	public String toedit(){
-		return "/ws/export/ajaxExport";
+		return "/ws/export/ajaxExport.jsp";
 	}
 }

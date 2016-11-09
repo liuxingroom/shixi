@@ -19,7 +19,7 @@ public class ShipmentController extends BaseController{
 	 */
 	@RequestMapping("/toedit.action")
 	public String toedit(){
-		return "/cargo/outproduct/jOutProduct";
+		return "/cargo/outproduct/jOutProduct.jsp";
 	}
 	
 }

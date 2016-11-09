@@ -41,9 +41,8 @@ public class ChartController extends BaseController{
 		
 		String sql = "SELECT f.factory_na,cp.countnum FROM (SELECT factory_id,factory_na FROM factory_c) f RIGHT JOIN (SELECT factory_id,COUNT(*) AS countnum FROM contract_product_c GROUP BY factory_id ) cp ON f.factory_id=cp.factory_id";
 		this.writeXml(path,dir,this.getPieXml(this.getData(sql)));
-		model.addAttribute("forward", dir);
 		
-		return "stat/chart/jStat";
+		return "stat/chart/jStat.jsp?forward="+dir;
 	}
 	
 	/**
@@ -60,8 +59,7 @@ public class ChartController extends BaseController{
 		
 		String sql = "SELECT product_no,SUM(cnumber) AS sumnum FROM contract_product_c GROUP BY product_no ORDER BY SUM(cnumber)  DESC";
 		this.writeXml(path, dir, this.getColumnAndLineXml(this.getData(sql)));
-		model.addAttribute("forward", dir);
-		return "/stat/chart/jStat";
+		return "stat/chart/jStat.jsp?forward="+dir;
 	}
 	
 	/**
@@ -78,9 +76,8 @@ public class ChartController extends BaseController{
 		
 		String sql = "SELECT t.a1,p.countnum FROM (SELECT a1 FROM online_t) t LEFT JOIN (SELECT SUBSTRING(login_time,12,2) AS a1,COUNT(*) AS countnum FROM login_log_p GROUP BY SUBSTRING(login_time,12,2)) p ON t.a1=p.a1";
 		this.writeXml(path, dir, this.getColumnAndLineXml(this.getData(sql)));
-		model.addAttribute("forward", dir);
 		
-		return "/stat/chart/jStat";
+		return "stat/chart/jStat.jsp?forward="+dir;
 	}
 	
 	//拼接饼形图xml

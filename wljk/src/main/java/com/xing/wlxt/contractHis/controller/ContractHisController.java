@@ -28,7 +28,7 @@ public class ContractHisController extends BaseController{
 	public String list(Model model){
 		List<Contract> dataList=contractHisService.find(null);
 		model.addAttribute("dataList", dataList);
-		return "/cargo/contracthis/jContractHisList";
+		return "/cargo/contracthis/jContractHisList.jsp";
 	}
 	
 	
@@ -61,6 +61,6 @@ public class ContractHisController extends BaseController{
 	public String toview(String id,Model model){
 		ContractVO obj=contractHisService.view(id);
 		model.addAttribute("obj", obj);
-		return "/cargo/contracthis/jContractHisView";
+		return "/cargo/contracthis/jContractHisView.jsp";
 	}
 }

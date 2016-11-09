@@ -29,7 +29,7 @@ public class FactoryController extends BaseController{
 	public String findFactory(Model model){
 		List<Factory> factorys=factoryService.findFactory();
 		model.addAttribute("dataList", factorys);
-		return "/basicinfo/factory/jFactoryList";
+		return "/basicinfo/factory/jFactoryList.jsp";
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class FactoryController extends BaseController{
 	public String toview(Model model,String id){
 		Factory obj=factoryService.findFactoryById(id);
 		model.addAttribute("obj",obj);
-		return "/basicinfo/factory/jFactoryView";
+		return "/basicinfo/factory/jFactoryView.jsp";
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class FactoryController extends BaseController{
 	 */
 	@RequestMapping("/tocreate.action")
 	public String tocreate(){
-		return "/basicinfo/factory/jFactoryCreate";
+		return "/basicinfo/factory/jFactoryCreate.jsp";
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class FactoryController extends BaseController{
 	public String toupdate(String id,Model model){
 		Factory obj=factoryService.findFactoryById(id);
 		model.addAttribute("obj", obj);
-		return "/basicinfo/factory/jFactoryUpdate";
+		return "/basicinfo/factory/jFactoryUpdate.jsp";
 	}
 	
 	/**

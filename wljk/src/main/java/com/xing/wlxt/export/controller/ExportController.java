@@ -33,7 +33,7 @@ public class ExportController extends BaseController{
 		
 		List<Export> dataList=exportService.find(null); //查询报运表中的信息
 		model.addAttribute("dataList", dataList);
-		return "/cargo/export/jExportList";
+		return "/cargo/export/jExportList.jsp";
 	}
 	 
 	/**
@@ -43,7 +43,7 @@ public class ExportController extends BaseController{
 	public String toview(String id,Model model){
 		ExportVO obj=exportService.view(id);	 //根据id来获取报运单信息
 		model.addAttribute("obj", obj);      //将获取的报云单信息带到页面显示
-		return "/cargo/export/jExportView";
+		return "/cargo/export/jExportView.jsp";
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class ExportController extends BaseController{
 		Export obj=exportService.get(id);  //通过报运表id来获取报运表信息
 		model.addAttribute("obj", obj);
 		
-		return "/cargo/export/jExportUpdate";
+		return "/cargo/export/jExportUpdate.jsp";
 	}
 	
 	
@@ -74,7 +74,7 @@ public class ExportController extends BaseController{
 	public String contractList(Model model){
 		List<Contract> dataList=exportService.getContractList(); //货物购销合同列表
 		model.addAttribute("dataList", dataList);
-		return "cargo/export/jContractList";
+		return "cargo/export/jContractList.jsp";
 	}
 	
 	/**

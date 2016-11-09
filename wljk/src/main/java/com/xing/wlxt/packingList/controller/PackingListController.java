@@ -30,7 +30,7 @@ public class PackingListController extends BaseController{
 	public String list(Model model){
 		List<PackingList> dataList=packingListService.find(null);
 		model.addAttribute("dataList", dataList);
-		return "/cargo/packinglist/jPackingListList";
+		return "/cargo/packinglist/jPackingListList.jsp";
 	}
 	
 	
@@ -40,7 +40,7 @@ public class PackingListController extends BaseController{
 		// TODO
 		//携带出口报运的id集合	//显示装箱和报运的关系
 			//	model.addAttribute("divData", packingListService.getDivDataCreate(id));
-		return "/cargo/packinglist/jPackingListCreate";
+		return "/cargo/packinglist/jPackingListCreate.jsp";
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class PackingListController extends BaseController{
 		
 		// TODO
 		//model.addAttribute("divData", packingListService.getDivDataView(obj.getExportNos().split("\\|")));
-		return "/cargo/packinglist/jPackingListView";
+		return "/cargo/packinglist/jPackingListView.jsp";
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class PackingListController extends BaseController{
 		
 		//TODO
 //		String _s = packingListService.getDivDataUpdate(obj.getExportIds().split("\\|"), obj.getExportNos().split("\\|"));
-		return "/cargo/packinglist/jPackingListUpdate";
+		return "/cargo/packinglist/jPackingListUpdate.jsp";
 	}
 	
 	/**

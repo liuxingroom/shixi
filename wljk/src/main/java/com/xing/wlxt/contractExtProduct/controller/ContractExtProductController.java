@@ -45,7 +45,7 @@ public class ContractExtProductController {
 		// TODO 
 	//	contractExtProductService.getCTypeList();              //准备分类下拉列表
 		
-		return "/cargo/contract/jExtCproductCreate";
+		return "/cargo/contract/jExtCproductCreate.jsp";
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class ContractExtProductController {
 		contractExtProductService.insert(extProduct);   //插入附件信息
 		
 		model.addAttribute("contractProductID", extProduct.getContractProductID());  //设置商品的id
-		return "redirect:/cargo/extcproduct/tocreate.action";
+		return "redirect:/cargo/extcproduct/tocreate.action.jsp";
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class ContractExtProductController {
 //		List<SysCode> ctypeList = extCproductService.getCtypeList();
 //		model.addAttribute("ctypeList", ctypeList);
 		
-		return "/cargo/contract/jExtCproductUpdate";
+		return "/cargo/contract/jExtCproductUpdate.jsp";
 	}
 	
 	/**
