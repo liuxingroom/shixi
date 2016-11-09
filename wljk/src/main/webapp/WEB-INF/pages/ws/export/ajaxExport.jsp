@@ -25,8 +25,7 @@
     		
 	    	var url = "http://localhost:8080/wlxt/cxf/exportService";			//webService访问链接
 	    	var requestBody = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:q0=\"http://service.export.wlxt.xing.com/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
-	    					+ "<soapenv:Body><q0:get><arg0>"+id+"</arg0></q0:get></soapenv:Body></soapenv:Envelope>";
-	    	
+	    					+ "<soapenv:Body><q0:getByWS><arg0>"+id+"</arg0></q0:getByWS></soapenv:Body></soapenv:Envelope>";
 	    	
 	    	xmlHttpRequest.open("POST", url, true);										//打开链接
 	    	xmlHttpRequest.setRequestHeader("Content-Type","text/xml;charset=utf-8");	//设置请求头
@@ -145,7 +144,7 @@
 		<table class="commonTable" cellspacing="1">
 	        <tr>
 	            <td class="columnTitle_mustbe">报运编号：</td>
-	            <td class="tableContent"><input type="text" name="id" id="id" value="a81f5a3f-386d-4b31-a03f-e81a8fe28a1d"/></td>
+	            <td class="tableContent"><input type="text" name="id" id="id" value="efa01c31-07a5-491d-a3f4-897cdb25eb60"/></td>
 	        </tr>
 	        <tr>
 	            <td class="columnTitle_mustbe">报运号：</td>
