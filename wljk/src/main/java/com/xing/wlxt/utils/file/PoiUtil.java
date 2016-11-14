@@ -109,8 +109,10 @@ public class PoiUtil {
 			BufferedImage bufferImg = ImageIO.read(imgFile);
 			ImageIO.write(bufferImg, "jpg", byteArrayOut);
 
-			// 左,上(0-255),右(0-1023),下
+			// 左,上(0-255),右(0-1023),下(0-255) 表示前四个参数
 			HSSFClientAnchor anchor = new HSSFClientAnchor(20, 1, 1018, 0, (short) (iColStart), iRowStart, (short) (iColStop), iRowStop);
+			//第二参数表示这张图片的索引
+			//使用wb.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG) 该方法   生成该图片的索引
 			patriarch.createPicture(anchor, wb.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG));
 		}
 	}
@@ -380,15 +382,19 @@ public class PoiUtil {
 
 	public HSSFCellStyle notehv10_BorderThin(HSSFWorkbook wb, HSSFFont defaultFont10) {
 		HSSFCellStyle curStyle = wb.createCellStyle();
+		// 自动换行 
 		curStyle.setWrapText(true); // 换行
 
+		// 把字体 应用到当前样式
 		curStyle.setFont(defaultFont10);
+//		curStyle.setAlignment(HSSFCellStyle.VERTICAL_CENTER);         //单元格水平居中
 		curStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER); // 单元格垂直居中
 
-		curStyle.setBorderTop(HSSFCellStyle.BORDER_THIN); // 实线右边框
+		// 设置边框
+		curStyle.setBorderTop(HSSFCellStyle.BORDER_THIN); // 实线上边框
 		curStyle.setBorderRight(HSSFCellStyle.BORDER_THIN); // 实线右边框
-		curStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); // 实线右边框
-		curStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN); // 实线右边框
+		curStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); // 实线下边框
+		curStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN); // 实线左边框
 
 		return curStyle;
 	}
@@ -397,7 +403,7 @@ public class PoiUtil {
 		HSSFCellStyle curStyle = wb.createCellStyle();
 		curStyle.setWrapText(true); 									// 换行
 		curStyle.setFont(defaultFont10);
-		curStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		curStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);              //设置水平居中
 		curStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER); 	// 单元格垂直居中
 
 		curStyle.setBorderTop(HSSFCellStyle.BORDER_THIN); 				// 实线右边框

@@ -77,7 +77,7 @@ public class ContractVO implements Serializable{
 	/**创建部门*/
 	private String createDept;
 	/**创建日期*/
-	private String createTime;
+	private Date createTime;
 	public String getId() {
 		return id;
 	}
@@ -210,10 +210,10 @@ public class ContractVO implements Serializable{
 	public void setCreateDept(String createDept) {
 		this.createDept = createDept;
 	}
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 	

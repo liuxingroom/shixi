@@ -1,8 +1,11 @@
 package com.xing.wlxt.contract.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import com.xing.wlxt.base.controller.BaseController;
 import com.xing.wlxt.contract.entity.Contract;
 import com.xing.wlxt.contract.service.ContractService;
 import com.xing.wlxt.contract.view.ContractVO;
+import com.xing.wlxt.print.ContractPrint;
 
 @Controller
 @RequestMapping("/cargo/contract")
@@ -110,5 +114,18 @@ public class ContractController extends BaseController{
 	public String cancel(@RequestParam("id")String [] ids){
 		contractService.cancel(ids);
 		return "redirect:/cargo/contract/list.action";
+	}
+	
+	/**
+	 * 打印
+	 * @throws Exception 
+	 */
+	@RequestMapping("/print.action")
+	public void print(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		ContractPrint cp=new ContractPrint();   //创建打印对象
+		
+		
+		ContractVO obj=contractService.view(id);       //获取要打印的数据
+		cp.print(obj,request.getSession().getServletContext().getRealPath("/"),response);  //打印购销合同
 	}
 }

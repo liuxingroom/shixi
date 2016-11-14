@@ -12,7 +12,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/login.action")
 	public String login(){
-		return "index";
+		return "index.jsp";
 	}
 	
 	/**
@@ -21,7 +21,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/fmain.action")
 	public String fmain(){
-		return "home/fmain";
+		return "home/fmain.jsp";
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/title.action")
 	public String title(){
-		return "home/title";
+		return "home/title.jsp";
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/left.action")
 	public String left(){
-		return "home/left";
+		return "home/left.jsp";
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/main.action")
 	public String main(){
-		return "home/olmsgList";			//首页转向留言板
+		return "home/olmsgList.jsp";			//首页转向留言板
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/cargoMain.action")
 	public String cargoMain(){
-		return "cargo/main";
+		return "cargo/main.jsp";
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/cargoLeft.action")
 	public String cargoLeft(){
-		return "cargo/left";
+		return "cargo/left.jsp";
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/statMain.action")
 	public String statMain(){
-		return "stat/main";
+		return "stat/main.jsp";
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/statLeft.action")
 	public String statLeft(){
-		return "stat/left";
+		return "stat/left.jsp";
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/baseinfoMain.action")
 	public String baseinfoMain(){
-		return "baseinfo/main";
+		return "baseinfo/main.jsp";
 	}
 	
 	/**
@@ -97,7 +97,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/baseinfoLeft.action")
 	public String baseinfoLeft(){
-		return "baseinfo/left";
+		return "baseinfo/left.jsp";
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/sysadminMain")
 	public String sysadminMain(){
-		return "sysadmin/main";
+		return "sysadmin/main.jsp";
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/sysadminLeft")
 	public String sysadminLeft(){
-		return "/sysadmin/left";
+		return "/sysadmin/left.jsp";
 	}
 }
 
