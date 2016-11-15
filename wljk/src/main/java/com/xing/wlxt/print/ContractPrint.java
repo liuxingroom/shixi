@@ -1,9 +1,7 @@
 package com.xing.wlxt.print;
 
-import java.awt.Point;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +19,6 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellRangeAddress;
 
-import com.mysql.jdbc.Util;
 import com.xing.wlxt.contract.view.ContractVO;
 import com.xing.wlxt.contractProduct.view.ContractProductVO;
 import com.xing.wlxt.utils.DownloadUtil;
@@ -31,6 +28,7 @@ import com.xing.wlxt.utils.file.PoiUtil;
 /**
  *	打印购销合同
  */
+@SuppressWarnings("deprecation")
 public class ContractPrint {
 
 	public void print(ContractVO contract, String path,
@@ -150,7 +148,10 @@ public class ContractPrint {
 		 */
 
 		CellRangeAddress region=null;
-		HSSFPatriarch patriarch=sheet.createDrawingPatriarch();        //add  picture
+		/**
+		 * 在打印的报表中添加图片或添加划线时都会用到该对象
+		 */
+		HSSFPatriarch patriarch=sheet.createDrawingPatriarch();        
 		HSSFRow nRow=null;
 		HSSFCell nCell=null;
 		int curRow=0;
@@ -211,6 +212,7 @@ public class ContractPrint {
 			nRow=sheet.createRow(curRow++);
 			nRow.setHeightInPoints(7);
 			
+			//划线
 			poiUtil.setLine(wb, patriarch, curRow, 2,curRow, 8);      //draw line
 			
 			//header
@@ -729,7 +731,7 @@ public class ContractPrint {
 		curStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);			//实线右边框
 		curStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);				//实线右边框
 		
-		curStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		curStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);				//样式居中设置
 		curStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);		//单元格垂直居中
 		
 		return curStyle;
@@ -750,7 +752,7 @@ public class ContractPrint {
 		curStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);			//实线
 		curStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);				//实线
 		
-		curStyle.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+		curStyle.setAlignment(HSSFCellStyle.ALIGN_RIGHT);			    //样式居中设置
 		curStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);		//单元格垂直居中
 		
 		return curStyle;

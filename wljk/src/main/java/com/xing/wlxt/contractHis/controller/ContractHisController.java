@@ -3,6 +3,8 @@ package com.xing.wlxt.contractHis.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.xing.wlxt.base.controller.BaseController;
 import com.xing.wlxt.contract.entity.Contract;
+import com.xing.wlxt.contract.service.ContractService;
 import com.xing.wlxt.contract.view.ContractVO;
 import com.xing.wlxt.contractHis.service.ContractHisService;
+import com.xing.wlxt.print.ContractPrint;
 
 @RequestMapping("/cargo/contracthis")
 @Controller
@@ -20,6 +24,9 @@ public class ContractHisController extends BaseController{
 	
 	@Resource
 	ContractHisService contractHisService;
+	
+	@Resource
+	ContractService contractService;
 	
 	/**
 	 * 查询历史购销合同的记录
@@ -62,5 +69,17 @@ public class ContractHisController extends BaseController{
 		ContractVO obj=contractHisService.view(id);
 		model.addAttribute("obj", obj);
 		return "/cargo/contracthis/jContractHisView.jsp";
+	}
+	
+	/**
+	 * 打印
+	 * @throws Exception 
+	 */
+	@RequestMapping("/print.action")
+	public void print(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		ContractPrint cp=new ContractPrint();   //创建打印对象
+		
+		ContractVO obj=contractHisService.view(id);       //获取要打印的数据
+		cp.print(obj,request.getSession().getServletContext().getRealPath("/"),response);  //打印购销合同
 	}
 }

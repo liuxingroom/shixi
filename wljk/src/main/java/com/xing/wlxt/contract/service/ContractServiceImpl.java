@@ -79,7 +79,6 @@ public class ContractServiceImpl implements ContractService{
 	@Override
 	public void update(Contract contract) {
 		contractMapper.update(contract);
-		System.out.println();
 	}
 	
 	
