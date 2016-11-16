@@ -324,7 +324,7 @@ public class ContractPrint {
 			
 			//插入产品图片
 			if(UtilFuns.isNotEmpty(printMap.get("ProdductImage"))){
-				poiUtil.setPicture(wb, patriarch, path+"ufiles/jquery/"+printMap.get("ProductImage"), curRow-1, 1, curRow, 3);
+				poiUtil.setPicture(wb, patriarch, path+"ufiles/jquery/"+printMap.get("ProductImage"), curRow-1, 1, curRow-1, 3);
 			}
 			
 			//start
@@ -598,7 +598,7 @@ public class ContractPrint {
 		curFont.setFontName("Comic Sans MS");               //设置字体的名字
 		curFont.setCharSet(HSSFFont.DEFAULT_CHARSET);		//设置中文字体，那必须还要再对单元格进行编码设置
 		
-		curFont.setItalic(true);						    
+		curFont.setItalic(true);		//设置为斜体	           			    
 		curFont.setFontHeightInPoints((short)16);           //设置字体大小
 		curStyle.setFont(curFont);
 		curStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);		//单元格垂直居中
