@@ -4,3 +4,4 @@
 
 <link rel="stylesheet" rev="stylesheet" type="text/css" href="${ctx}/skin/default/css/default.css" media="all"/>
 <script language="javascript" src="${ctx}/js/common.js"></script>
+<script language="javascript" src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script>
