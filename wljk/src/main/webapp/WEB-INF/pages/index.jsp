@@ -2,7 +2,7 @@
 <%@ include file="base.jsp" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>陕西杰信商务综合管理平台</title>
+<title>后台管理平台</title>
 	<link rel="stylesheet" rev="stylesheet" type="text/css" href="${ctx}/skin/default/css/login.css" media="all" />
 </head>
 
@@ -24,7 +24,7 @@
 				 title="请您输入密码"/></div>
 		  </div>
 			<div class="dl">
-				<input  class="loginImgOut" value="" type="button" onclick="formSubmit('${ctx}/fmain.action','_self');"
+				<input  class="loginImgOut" value="" type="button" onclick="loginSubmit('${ctx}/fmain.action','_self');"
 				  onmouseover="this.className='loginImgOver'" 
 				  onmouseout="this.className='loginImgOut'"
 				/>

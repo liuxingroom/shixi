@@ -1217,6 +1217,19 @@ function formSubmit (url,sTarget){
     
 }
 
+/**
+ * 登录点击事件
+ * @param url
+ * @param sTarget
+ * @returns {Boolean}
+ */
+function loginSubmit(url,sTarget){
+	document.forms[0].target = sTarget
+    document.forms[0].action = url;
+    document.forms[0].submit();
+    return true;
+}
+
 function selectToInput(selectObj) {
 	var value = selectObj.options[selectObj.selectedIndex].value;
 //	alert(selectObj.parentElement.firstChild.tagName);
